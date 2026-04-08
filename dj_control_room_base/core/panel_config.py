@@ -33,20 +33,30 @@ class PanelConfig:
         self.settings_key = settings_key
         self.defaults = defaults or {}
 
-    def get_settings(self) -> dict:
-        """Return merged panel settings (user overrides applied over defaults)."""
-        user = getattr(django_settings, self.settings_key, None) or {}
-        return {**self.defaults, **user}
+    def get_settings(self, key: str | None = None) -> dict:
+        """Return merged panel settings (defined settings overrides applied over defaults)."""
+        # settings defined for the panel in the consuming project's app settings
+        defined_settings = getattr(django_settings, self.settings_key, None) or {}
+
+        # combine defaults with defined settings. settings not defined by the project will use
+        # the defaults
+        combined_settings = {**self.defaults, **defined_settings}
+        if key is not None:
+            # get a specific key and fall back to defaults if not defined
+            return combined_settings.get(key, self.defaults.get(key, None))
+        return combined_settings
 
     def get_css_context(self) -> dict:
         """Return the CSS injection context dict for use in templates."""
-        cfg = self.get_settings()
+        settings = self.get_settings()
         links = []
-        for path in cfg.get("EXTRA_CSS", []):
-            url = path if path.startswith(("http://", "https://", "//")) else static(path)
+        for path in settings.get("EXTRA_CSS", []):
+            url = (
+                path if path.startswith(("http://", "https://", "//")) else static(path)
+            )
             links.append(format_html('<link rel="stylesheet" href="{}">', url))
         return {
-            "dj_cr_load_default_css": bool(cfg.get("LOAD_DEFAULT_CSS", True)),
+            "dj_cr_load_default_css": bool(settings.get("LOAD_DEFAULT_CSS", True)),
             "dj_cr_extra_css": mark_safe("\n".join(links)),
         }
 
