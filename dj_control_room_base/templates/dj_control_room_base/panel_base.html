@@ -1,0 +1,34 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}{% block panel_title %}{% endblock %} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{% if dj_cr_load_default_css %}<link rel="stylesheet" href="{% static 'dj_control_room_base/css/styles.css' %}">{% endif %}
+{{ dj_cr_extra_css }}
+{% endblock %}
+
+{% block branding %}
+{% block panel_branding %}{% endblock %}
+{% endblock %}
+
+{% block messages %}{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+  {% block panel_breadcrumbs %}{% endblock %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="dcr-panel">
+  {% block panel_content %}{% endblock %}
+</div>
+{% endblock %}
+
+{% block footer %}
+{{ block.super }}
+{% block panel_scripts %}{% endblock %}
+{% endblock %}
