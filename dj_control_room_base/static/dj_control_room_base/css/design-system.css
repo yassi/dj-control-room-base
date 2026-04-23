@@ -1660,6 +1660,66 @@ a.dcr-pagination__page:hover {
   transition: background 0.1s ease;
 }
 
+/* --- Expandable rows ------------------------------------------------------- */
+
+.dcr-col--expand {
+  width: 36px;
+  padding-left: var(--dcr-space-sm) !important;
+  padding-right: 0 !important;
+}
+
+.dcr-data-table__expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dcr-color-text-muted);
+  border-radius: var(--dcr-radius-sm);
+  padding: 0;
+  transition: color 0.1s ease, background 0.1s ease;
+}
+
+.dcr-data-table__expand-btn:hover {
+  color: var(--dcr-color-text);
+  background: var(--dcr-color-bg-subtle);
+}
+
+.dcr-data-table__expand-btn svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.15s ease;
+}
+
+.dcr-data-table__expand-btn[aria-expanded="true"] svg {
+  transform: rotate(90deg);
+}
+
+.dcr-data-table__expand-row {
+  display: none;
+}
+
+.dcr-data-table__expand-row.is-open {
+  display: table-row;
+}
+
+.dcr-data-table__expand-row > td {
+  padding: 0 !important;
+  background: var(--dcr-color-bg) !important;
+}
+
+/* Code viewer flush inside an expand row — no outer radius or margin */
+.dcr-data-table__expand-row .dcr-code-viewer {
+  margin: 0;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
 
 /* --- Callout --------------------------------------------------------------- */
 
