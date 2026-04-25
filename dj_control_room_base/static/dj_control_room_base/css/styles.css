@@ -218,6 +218,8 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--dcr-color-text-muted);
+  display: block;
+  margin-bottom: var(--dcr-space-sm);
 }
 
 /* "Usage" label above code block */

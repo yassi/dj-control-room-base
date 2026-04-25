@@ -166,6 +166,37 @@
    ============================================================================= */
 
 
+/* --- Typography utilities --------------------------------------------------- */
+
+.dcr-text-xs {
+  font-size: var(--dcr-font-size-xs) !important;
+}
+
+.dcr-text-sm {
+  font-size: var(--dcr-font-size-sm) !important;
+}
+
+.dcr-text-base {
+  font-size: var(--dcr-font-size-base) !important;
+}
+
+.dcr-text-lg {
+  font-size: var(--dcr-font-size-lg) !important;
+}
+
+.dcr-text-xl {
+  font-size: var(--dcr-font-size-xl) !important;
+}
+
+.dcr-font-sans {
+  font-family: var(--dcr-font-sans) !important;
+}
+
+.dcr-font-mono {
+  font-family: var(--dcr-font-mono) !important;
+}
+
+
 /* --- Content width ---------------------------------------------------------- */
 /*
  * Centered, max-width containers for panel content areas.
@@ -217,7 +248,7 @@
 }
 
 /* When a back link immediately precedes the header, reduce the top gap */
-.dcr-back-link + .dcr-page-header {
+.dcr-back-link+.dcr-page-header {
   padding-top: var(--dcr-space-xs);
 }
 
@@ -357,10 +388,10 @@
   font-size: var(--dcr-font-size-sm);
   font-weight: 600;
   line-height: 1.4;
-  border: 1px solid transparent;
+  border: 1px solid var(--dcr-color-border);
   border-radius: var(--dcr-radius-xl) !important;
-  background: var(--dcr-color-bg-subtle);
-  color: var(--dcr-color-text);
+  background: var(--dcr-color-bg);
+  color: var(--dcr-color-accent);
   cursor: pointer;
   text-decoration: none !important;
   white-space: nowrap;
@@ -370,13 +401,25 @@
   letter-spacing: 0.1em;
 }
 
+/* Dark mode: default button border picks up accent to match its text.
+   Ghost buttons keep their own respective variant border colours.       */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .dcr-btn:not([class*="dcr-btn--"]) {
+    border-color: var(--dcr-color-accent);
+  }
+}
+
+:root[data-theme="dark"] .dcr-btn:not([class*="dcr-btn--"]) {
+  border-color: var(--dcr-color-accent);
+}
+
 /* Neutralise Django admin's <a> colour overrides when dcr-btn is on a link */
 a.dcr-btn,
 a.dcr-btn:link,
 a.dcr-btn:visited,
 a.dcr-btn:hover,
 a.dcr-btn:active {
-  color: var(--dcr-color-text) !important;
+  color: var(--dcr-color-accent) !important;
   text-decoration: none !important;
 }
 
@@ -453,8 +496,8 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 }
 
 .dcr-btn:hover:not(:disabled) {
-  border-color: var(--dcr-color-border);
-  opacity: 0.9;
+  background: var(--dcr-color-bg-subtle);
+  opacity: 1;
 }
 
 .dcr-btn:active:not(:disabled) {
@@ -484,6 +527,7 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 
 .dcr-btn--primary {
   background: var(--dcr-color-accent);
+  border-color: transparent;
   color: #fff;
 }
 
@@ -495,6 +539,7 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 
 .dcr-btn--success {
   background: var(--dcr-color-success);
+  border-color: transparent;
   color: #fff;
 }
 
@@ -506,6 +551,7 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 
 .dcr-btn--warning {
   background: var(--dcr-color-warning);
+  border-color: transparent;
   color: #fff;
 }
 
@@ -517,6 +563,7 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 
 .dcr-btn--danger {
   background: var(--dcr-color-danger);
+  border-color: transparent;
   color: #fff;
 }
 
@@ -528,6 +575,7 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 
 .dcr-btn--info {
   background: var(--dcr-color-info);
+  border-color: transparent;
   color: #fff;
 }
 
@@ -539,6 +587,7 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 
 .dcr-btn--muted {
   background: var(--dcr-color-muted);
+  border-color: transparent;
   color: #fff;
 }
 
@@ -554,12 +603,12 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 .dcr-btn--ghost {
   background: transparent;
   border-color: var(--dcr-color-border);
-  color: var(--dcr-color-text);
+  color: var(--dcr-color-accent);
 }
 
 .dcr-btn--ghost:hover:not(:disabled) {
   background: var(--dcr-color-bg-subtle);
-  opacity: 1;
+  border-color: var(--dcr-color-border);
 }
 
 .dcr-btn--primary.dcr-btn--ghost {
@@ -595,26 +644,32 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 .dcr-btn--ghost:hover:not(:disabled),
 .dcr-btn--primary.dcr-btn--ghost:hover:not(:disabled) {
   background: var(--dcr-color-accent-bg);
+  border-color: var(--dcr-color-accent);
 }
 
 .dcr-btn--success.dcr-btn--ghost:hover:not(:disabled) {
   background: var(--dcr-color-success-bg);
+  border-color: var(--dcr-color-success);
 }
 
 .dcr-btn--warning.dcr-btn--ghost:hover:not(:disabled) {
   background: var(--dcr-color-warning-bg);
+  border-color: var(--dcr-color-warning);
 }
 
 .dcr-btn--danger.dcr-btn--ghost:hover:not(:disabled) {
   background: var(--dcr-color-danger-bg);
+  border-color: var(--dcr-color-danger);
 }
 
 .dcr-btn--info.dcr-btn--ghost:hover:not(:disabled) {
   background: var(--dcr-color-info-bg);
+  border-color: var(--dcr-color-info);
 }
 
 .dcr-btn--muted.dcr-btn--ghost:hover:not(:disabled) {
   background: var(--dcr-color-muted-bg);
+  border-color: var(--dcr-color-muted);
 }
 
 /* ── Size modifier ───────────────────────────────────────────────────── */
@@ -921,15 +976,20 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
   display: inline-flex;
   align-items: center;
   gap: var(--dcr-space-xs);
-  font-size: var(--dcr-font-size-sm);
+  font-size: var(--dcr-font-size-base);
   color: var(--dcr-color-text-muted);
-  text-decoration: none;
+  text-decoration: none !important;
   margin-top: var(--dcr-space-lg);
   margin-bottom: var(--dcr-space-sm);
 }
 
+.dcr-back-link::before {
+  content: "←";
+}
+
 .dcr-back-link:hover {
   color: var(--dcr-color-accent);
+  text-decoration: underline !important;
 }
 
 
