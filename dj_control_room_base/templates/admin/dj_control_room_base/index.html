@@ -41,6 +41,26 @@
 
     var initial = (location.hash || '').replace('#', '') || DEFAULT_TAB;
     showTab(initial);
+
+    /* Close any open dcr-dropdown when clicking outside or pressing Escape */
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dcr-dropdown')) {
+        document.querySelectorAll('.dcr-dropdown.is-open').forEach(function(d) {
+          d.classList.remove('is-open');
+          var trigger = d.querySelector('[aria-expanded]');
+          if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.dcr-dropdown.is-open').forEach(function(d) {
+          d.classList.remove('is-open');
+          var trigger = d.querySelector('[aria-expanded]');
+          if (trigger) { trigger.setAttribute('aria-expanded', 'false'); trigger.focus(); }
+        });
+      }
+    });
   });
 </script>
 {% endblock %}

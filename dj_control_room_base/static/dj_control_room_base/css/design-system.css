@@ -757,6 +757,121 @@ a.dcr-btn--muted.dcr-btn--ghost:visited {
 }
 
 
+/* --- Dropdown --------------------------------------------------------------- */
+
+/*
+ * A button that reveals a positioned menu of actions on click.
+ * Toggle `is-open` and `aria-expanded` via JS.
+ *
+ *   <div class="dcr-dropdown">
+ *     <button class="dcr-btn dcr-dropdown__trigger" aria-haspopup="true" aria-expanded="false">
+ *       Actions
+ *       <svg class="dcr-btn__icon dcr-dropdown__caret" …></svg>
+ *     </button>
+ *     <div class="dcr-dropdown__menu" role="menu">
+ *       <a href="#" class="dcr-dropdown__item" role="menuitem">View</a>
+ *       <a href="#" class="dcr-dropdown__item" role="menuitem">Edit</a>
+ *       <hr class="dcr-dropdown__divider">
+ *       <button class="dcr-dropdown__item dcr-dropdown__item--danger" role="menuitem">Delete</button>
+ *     </div>
+ *   </div>
+ *
+ *   <!-- right-aligned menu -->
+ *   <div class="dcr-dropdown dcr-dropdown--right"> … </div>
+ */
+.dcr-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dcr-dropdown__caret {
+  transition: transform 150ms ease;
+}
+
+.dcr-dropdown.is-open .dcr-dropdown__caret {
+  transform: rotate(180deg);
+}
+
+.dcr-dropdown__menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 200;
+  min-width: 160px;
+  background: var(--dcr-color-bg);
+  border: 1px solid var(--dcr-color-border);
+  border-radius: var(--dcr-radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+  padding: var(--dcr-space-xs) 0;
+  white-space: nowrap;
+}
+
+.dcr-dropdown--right .dcr-dropdown__menu {
+  left: auto;
+  right: 0;
+}
+
+.dcr-dropdown.is-open .dcr-dropdown__menu {
+  display: block;
+}
+
+.dcr-dropdown__item {
+  display: block;
+  width: 100%;
+  padding: 6px var(--dcr-space-md);
+  font-size: var(--dcr-font-size-base);
+  color: var(--dcr-color-text);
+  text-decoration: none !important;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+a.dcr-dropdown__item,
+a.dcr-dropdown__item:link,
+a.dcr-dropdown__item:visited {
+  color: var(--dcr-color-text) !important;
+  text-decoration: none !important;
+}
+
+.dcr-dropdown__item:hover,
+.dcr-dropdown__item:focus {
+  background: var(--dcr-color-bg-subtle);
+  color: var(--dcr-color-text) !important;
+  outline: none;
+}
+
+a.dcr-dropdown__item:hover,
+a.dcr-dropdown__item:active {
+  color: var(--dcr-color-text) !important;
+  text-decoration: none !important;
+}
+
+.dcr-dropdown__item--danger,
+a.dcr-dropdown__item--danger,
+a.dcr-dropdown__item--danger:link,
+a.dcr-dropdown__item--danger:visited {
+  color: var(--dcr-color-danger) !important;
+}
+
+.dcr-dropdown__item--danger:hover,
+.dcr-dropdown__item--danger:focus,
+a.dcr-dropdown__item--danger:hover,
+a.dcr-dropdown__item--danger:active {
+  background: var(--dcr-color-danger-bg);
+  color: var(--dcr-color-danger) !important;
+}
+
+.dcr-dropdown__divider {
+  margin: var(--dcr-space-xs) 0;
+  border: none;
+  border-top: 1px solid var(--dcr-color-border);
+}
+
+
 /* --- Badge ------------------------------------------------------------------ */
 
 /*

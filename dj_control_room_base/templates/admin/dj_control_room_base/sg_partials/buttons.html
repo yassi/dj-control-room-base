@@ -204,6 +204,76 @@
 &lt;/a&gt;</code></pre>
 </section>
 
+<section class="dcr-sg-section" id="dropdown">
+  <div class="dcr-section-header dcr-section-header--plain">
+    <h2 class="dcr-section-header__title">{% trans "Dropdown" %}</h2>
+  </div>
+  <p class="dcr-sg-section__desc">{% trans "A button that reveals a positioned action menu on click. Wrap a " %}<code class="dcr-code">dcr-btn</code>{% trans " trigger and a " %}<code class="dcr-code">dcr-dropdown__menu</code>{% trans " inside " %}<code class="dcr-code">dcr-dropdown</code>{% trans ". Toggle " %}<code class="dcr-code">is-open</code>{% trans " + " %}<code class="dcr-code">aria-expanded</code>{% trans " via JS. Add " %}<code class="dcr-code">dcr-dropdown--right</code>{% trans " to right-align the menu." %}</p>
+  <div class="dcr-sg-preview" style="display:flex;flex-wrap:wrap;gap:var(--dcr-space-md);align-items:flex-start;min-height:180px">
+
+    <div class="dcr-dropdown" id="sg-dd-1">
+      <button class="dcr-btn" aria-haspopup="true" aria-expanded="false"
+              onclick="(function(el){var d=el.closest('.dcr-dropdown'),o=!d.classList.contains('is-open');document.querySelectorAll('.dcr-dropdown.is-open').forEach(function(x){x.classList.remove('is-open');x.querySelector('[aria-expanded]').setAttribute('aria-expanded','false');});if(o){d.classList.add('is-open');el.setAttribute('aria-expanded','true');}})(this)">
+        {% trans "Actions" %}
+        <svg class="dcr-btn__icon dcr-dropdown__caret" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="dcr-dropdown__menu" role="menu">
+        <a href="#" class="dcr-dropdown__item" role="menuitem">{% trans "View details" %}</a>
+        <a href="#" class="dcr-dropdown__item" role="menuitem">{% trans "Edit" %}</a>
+        <a href="#" class="dcr-dropdown__item" role="menuitem">{% trans "Duplicate" %}</a>
+        <hr class="dcr-dropdown__divider">
+        <button class="dcr-dropdown__item dcr-dropdown__item--danger" role="menuitem">{% trans "Delete" %}</button>
+      </div>
+    </div>
+
+    <div class="dcr-dropdown" id="sg-dd-2">
+      <button class="dcr-btn dcr-btn--primary" aria-haspopup="true" aria-expanded="false"
+              onclick="(function(el){var d=el.closest('.dcr-dropdown'),o=!d.classList.contains('is-open');document.querySelectorAll('.dcr-dropdown.is-open').forEach(function(x){x.classList.remove('is-open');x.querySelector('[aria-expanded]').setAttribute('aria-expanded','false');});if(o){d.classList.add('is-open');el.setAttribute('aria-expanded','true');}})(this)">
+        <svg class="dcr-btn__icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        {% trans "New" %}
+        <svg class="dcr-btn__icon dcr-dropdown__caret" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="dcr-dropdown__menu" role="menu">
+        <a href="#" class="dcr-dropdown__item" role="menuitem">{% trans "From template" %}</a>
+        <a href="#" class="dcr-dropdown__item" role="menuitem">{% trans "Import JSON" %}</a>
+        <a href="#" class="dcr-dropdown__item" role="menuitem">{% trans "Blank entry" %}</a>
+      </div>
+    </div>
+
+    <div class="dcr-dropdown dcr-dropdown--right" id="sg-dd-3" style="margin-left:auto">
+      <button class="dcr-btn dcr-btn--ghost dcr-btn--icon-only" aria-label="{% trans "More options" %}" aria-haspopup="true" aria-expanded="false"
+              onclick="(function(el){var d=el.closest('.dcr-dropdown'),o=!d.classList.contains('is-open');document.querySelectorAll('.dcr-dropdown.is-open').forEach(function(x){x.classList.remove('is-open');x.querySelector('[aria-expanded]').setAttribute('aria-expanded','false');});if(o){d.classList.add('is-open');el.setAttribute('aria-expanded','true');}})(this)">
+        <svg class="dcr-btn__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+      </button>
+      <div class="dcr-dropdown__menu" role="menu">
+        <a href="#" class="dcr-dropdown__item" role="menuitem">{% trans "Flush cache" %}</a>
+        <a href="#" class="dcr-dropdown__item" role="menuitem">{% trans "Export" %}</a>
+        <hr class="dcr-dropdown__divider">
+        <button class="dcr-dropdown__item dcr-dropdown__item--danger" role="menuitem">{% trans "Purge all" %}</button>
+      </div>
+    </div>
+
+  </div>
+  <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
+<pre class="dcr-sg-code"><code class="language-html">&lt;div class="dcr-dropdown"&gt;
+  &lt;button class="dcr-btn dcr-dropdown__trigger"
+          aria-haspopup="true" aria-expanded="false"
+          onclick="dcr_toggleDropdown(this)"&gt;
+    Actions
+    &lt;svg class="dcr-btn__icon dcr-dropdown__caret" …&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;div class="dcr-dropdown__menu" role="menu"&gt;
+    &lt;a href="#" class="dcr-dropdown__item" role="menuitem"&gt;View details&lt;/a&gt;
+    &lt;a href="#" class="dcr-dropdown__item" role="menuitem"&gt;Edit&lt;/a&gt;
+    &lt;hr class="dcr-dropdown__divider"&gt;
+    &lt;button class="dcr-dropdown__item dcr-dropdown__item--danger" role="menuitem"&gt;Delete&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- right-aligned menu --&gt;
+&lt;div class="dcr-dropdown dcr-dropdown--right"&gt; … &lt;/div&gt;</code></pre>
+</section>
+
 <section class="dcr-sg-section" id="back-link">
   <div class="dcr-section-header dcr-section-header--plain">
     <h2 class="dcr-section-header__title">{% trans "Back Link" %}</h2>
