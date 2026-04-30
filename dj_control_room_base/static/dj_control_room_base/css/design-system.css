@@ -1858,9 +1858,79 @@ a.dcr-dropdown__item--danger:active {
   margin-bottom: var(--dcr-space-lg);
 }
 
-/* 2-column variant for wide/feature cards at the bottom of a panel index */
-.dcr-panel-grid--2 {
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+/*
+ * Split card — full-width bordered card divided into equal sections by
+ * vertical rules. Use wherever you need a row of info/action cells inside
+ * a single card chrome (e.g. call-to-action footer, feature comparison).
+ *
+ *   <div class="dcr-split-card">
+ *     <div class="dcr-split-card__section">
+ *       <div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--info">
+ *         <svg class="dcr-panel-card__icon" …></svg>
+ *       </div>
+ *       <h3 class="dcr-split-card__title">Section title</h3>
+ *       <p class="dcr-split-card__desc">Description text.</p>
+ *       <div class="dcr-split-card__footer">
+ *         <a href="#" class="dcr-panel-card__link">Link text</a>
+ *       </div>
+ *     </div>
+ *     <div class="dcr-split-card__section"> … </div>
+ *   </div>
+ */
+.dcr-split-card {
+  display: flex;
+  background: var(--dcr-color-bg);
+  border: 1px solid var(--dcr-color-border);
+  border-radius: var(--dcr-radius-xl);
+  overflow: hidden;
+  margin-bottom: var(--dcr-space-lg);
+}
+
+.dcr-split-card__section {
+  flex: 1;
+  padding: var(--dcr-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dcr-space-sm);
+}
+
+.dcr-split-card__section+.dcr-split-card__section {
+  border-left: 1px solid var(--dcr-color-border);
+}
+
+.dcr-split-card__title,
+.dcr-panel-card__title {
+  font-size: var(--dcr-font-size-lg);
+  font-weight: 700;
+  color: var(--dcr-color-text);
+  margin: var(--dcr-space-sm) 0 0 0;
+}
+
+.dcr-split-card__desc,
+.dcr-panel-card__desc {
+  font-size: var(--dcr-font-size-base);
+  color: var(--dcr-color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+.dcr-split-card__footer,
+.dcr-panel-card__footer {
+  margin-top: auto;
+  padding-top: var(--dcr-space-md);
+}
+
+/* Stack vertically on narrow viewports */
+@media (max-width: 600px) {
+  .dcr-split-card {
+    flex-direction: column;
+  }
+
+  .dcr-split-card__section+.dcr-split-card__section {
+    border-left: none;
+    border-top: 1px solid var(--dcr-color-border);
+  }
 }
 
 .dcr-panel-card {
@@ -1973,25 +2043,6 @@ a.dcr-dropdown__item--danger:active {
   flex-shrink: 0;
 }
 
-.dcr-panel-card__title {
-  font-size: var(--dcr-font-size-lg);
-  font-weight: 700;
-  color: var(--dcr-color-text);
-  margin: 0 0 2px;
-}
-
-.dcr-panel-card__desc {
-  font-size: var(--dcr-font-size-base);
-  color: var(--dcr-color-text-muted);
-  line-height: 1.5;
-  margin: 0;
-  flex: 1;
-}
-
-.dcr-panel-card__footer {
-  margin-top: auto;
-  padding-top: var(--dcr-space-md);
-}
 
 .dcr-panel-card__link {
   font-size: var(--dcr-font-size-base);

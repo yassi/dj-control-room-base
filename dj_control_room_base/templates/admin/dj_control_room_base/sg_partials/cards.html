@@ -147,7 +147,7 @@
   <div class="dcr-section-header dcr-section-header--plain">
     <h2 class="dcr-section-header__title">{% trans "Panel Grid" %}</h2>
   </div>
-  <p class="dcr-sg-section__desc">{% trans "Responsive grid for the panel index page. Use " %}<code class="dcr-code">dcr-panel-grid</code>{% trans " as the container and " %}<code class="dcr-code">dcr-panel-card</code>{% trans " for each item. Wrap the icon in " %}<code class="dcr-code">dcr-panel-card__icon-wrap</code>{% trans ". Use " %}<code class="dcr-code">dcr-badge</code>{% trans " variants for install status. Add " %}<code class="dcr-code">dcr-panel-grid--2</code>{% trans " for the 2-column wide-card row at the bottom. Add " %}<code class="dcr-code">dcr-panel-card--coming-soon</code>{% trans " to dim unavailable panels." %}</p>
+  <p class="dcr-sg-section__desc">{% trans "Responsive grid for the panel index page. Use " %}<code class="dcr-code">dcr-panel-grid</code>{% trans " as the container and " %}<code class="dcr-code">dcr-panel-card</code>{% trans " for each item. Wrap the icon in " %}<code class="dcr-code">dcr-panel-card__icon-wrap</code>{% trans " with a colour modifier. Use " %}<code class="dcr-code">dcr-badge</code>{% trans " variants for install status. Add " %}<code class="dcr-code">dcr-panel-card--coming-soon</code>{% trans " to dim unavailable panels." %}</p>
   <div class="dcr-sg-preview dcr-sg-preview--stack">
 
     <div class="dcr-section-header" style="width:100%">
@@ -220,42 +220,6 @@
 
     </div>
 
-    <div class="dcr-panel-grid dcr-panel-grid--2" style="width:100%;margin-top:var(--dcr-space-md)">
-
-      <div class="dcr-panel-card">
-        <div class="dcr-panel-card__top">
-          <div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--info">
-            <svg class="dcr-panel-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </div>
-        </div>
-        <h3 class="dcr-panel-card__title">{% trans "More panels on the way" %}</h3>
-        <p class="dcr-panel-card__desc">{% trans "We're building more tools to bring full observability to your Django admin. Follow our progress on GitHub." %}</p>
-        <div class="dcr-panel-card__footer">
-          <a href="#" class="dcr-panel-card__link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            {% trans "GitHub" %}
-          </a>
-        </div>
-      </div>
-
-      <div class="dcr-panel-card">
-        <div class="dcr-panel-card__top">
-          <div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--indigo">
-            <svg class="dcr-panel-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          </div>
-        </div>
-        <h3 class="dcr-panel-card__title">{% trans "Build your own panel" %}</h3>
-        <p class="dcr-panel-card__desc">{% trans "Django Control Room is built to be extended. Use our cookiecutter template to scaffold a fully structured panel plugin in seconds." %}</p>
-        <div class="dcr-panel-card__footer">
-          <a href="#" class="dcr-panel-card__link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            {% trans "cookiecutter-django-admin-panel" %}
-          </a>
-        </div>
-      </div>
-
-    </div>
-
   </div>
   <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
 <pre class="dcr-sg-code"><code class="language-html">&lt;!-- section label --&gt;
@@ -301,10 +265,115 @@
 
 &lt;/div&gt;
 
-&lt;!-- 2-column wide cards --&gt;
-&lt;div class="dcr-panel-grid dcr-panel-grid--2"&gt;
-  &lt;div class="dcr-panel-card"&gt;…&lt;/div&gt;
-  &lt;div class="dcr-panel-card"&gt;…&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section class="dcr-sg-section" id="split-card">
+  <div class="dcr-section-header dcr-section-header--plain">
+    <h2 class="dcr-section-header__title">{% trans "Split Card" %}</h2>
+  </div>
+  <p class="dcr-sg-section__desc">{% trans "A full-width bordered card divided into equal columns by vertical rules. Add as many " %}<code class="dcr-code">dcr-split-card__section</code>{% trans " children as needed — the dividers are generated automatically. Stacks vertically on narrow viewports. Compose freely with " %}<code class="dcr-code">dcr-panel-card__icon-wrap</code>{% trans " and " %}<code class="dcr-code">dcr-panel-card__link</code>{% trans " inside each section." %}</p>
+
+  <div class="dcr-section-header dcr-section-header--plain" style="margin-top:var(--dcr-space-lg)">
+    <h3 class="dcr-section-header__title" style="font-size:var(--dcr-font-size-sm)">{% trans "2-way split" %}</h3>
+  </div>
+  <div class="dcr-sg-preview dcr-sg-preview--stack">
+    <div class="dcr-split-card" style="width:100%">
+
+      <div class="dcr-split-card__section">
+        <div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--info">
+          <svg class="dcr-panel-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <h3 class="dcr-split-card__title">{% trans "More panels on the way" %}</h3>
+        <p class="dcr-split-card__desc">{% trans "We're building more tools to bring full observability to your Django admin. Follow our progress on GitHub." %}</p>
+        <div class="dcr-split-card__footer">
+          <a href="#" class="dcr-panel-card__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            {% trans "GitHub" %}
+          </a>
+        </div>
+      </div>
+
+      <div class="dcr-split-card__section">
+        <div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--indigo">
+          <svg class="dcr-panel-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <h3 class="dcr-split-card__title">{% trans "Build your own panel" %}</h3>
+        <p class="dcr-split-card__desc">{% trans "Django Control Room is built to be extended. Use our cookiecutter template to scaffold a fully structured panel plugin in seconds." %}</p>
+        <div class="dcr-split-card__footer">
+          <a href="#" class="dcr-panel-card__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            {% trans "cookiecutter-django-admin-panel" %}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
+<pre class="dcr-sg-code"><code class="language-html">&lt;div class="dcr-split-card"&gt;
+  &lt;div class="dcr-split-card__section"&gt;
+    &lt;div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--info"&gt;
+      &lt;svg class="dcr-panel-card__icon" …&gt;&lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;h3 class="dcr-split-card__title"&gt;More panels on the way&lt;/h3&gt;
+    &lt;p class="dcr-split-card__desc"&gt;Description text.&lt;/p&gt;
+    &lt;div class="dcr-split-card__footer"&gt;
+      &lt;a href="#" class="dcr-panel-card__link"&gt;GitHub&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="dcr-split-card__section"&gt;
+    &lt;!-- second section … --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  <div class="dcr-section-header dcr-section-header--plain" style="margin-top:var(--dcr-space-lg)">
+    <h3 class="dcr-section-header__title" style="font-size:var(--dcr-font-size-sm)">{% trans "3-way split" %}</h3>
+  </div>
+  <div class="dcr-sg-preview dcr-sg-preview--stack">
+    <div class="dcr-split-card" style="width:100%">
+
+      <div class="dcr-split-card__section">
+        <div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--success">
+          <svg class="dcr-panel-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="dcr-split-card__title">{% trans "Open source" %}</h3>
+        <p class="dcr-split-card__desc">{% trans "MIT-licensed and fully open. Inspect the code, file issues, or contribute on GitHub." %}</p>
+        <div class="dcr-split-card__footer">
+          <a href="#" class="dcr-panel-card__link">{% trans "View on GitHub" %}</a>
+        </div>
+      </div>
+
+      <div class="dcr-split-card__section">
+        <div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--warning">
+          <svg class="dcr-panel-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3 class="dcr-split-card__title">{% trans "Read the docs" %}</h3>
+        <p class="dcr-split-card__desc">{% trans "Full API reference, configuration options, and how-to guides for panel authors." %}</p>
+        <div class="dcr-split-card__footer">
+          <a href="#" class="dcr-panel-card__link">{% trans "Documentation" %}</a>
+        </div>
+      </div>
+
+      <div class="dcr-split-card__section">
+        <div class="dcr-panel-card__icon-wrap dcr-panel-card__icon-wrap--purple">
+          <svg class="dcr-panel-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="dcr-split-card__title">{% trans "Join the community" %}</h3>
+        <p class="dcr-split-card__desc">{% trans "Ask questions, share panels, and stay up to date in the Django Control Room Discord." %}</p>
+        <div class="dcr-split-card__footer">
+          <a href="#" class="dcr-panel-card__link">{% trans "Discord" %}</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
+<pre class="dcr-sg-code"><code class="language-html">&lt;!-- 3-way split: just add a third section --&gt;
+&lt;div class="dcr-split-card"&gt;
+  &lt;div class="dcr-split-card__section"&gt;…&lt;/div&gt;
+  &lt;div class="dcr-split-card__section"&gt;…&lt;/div&gt;
+  &lt;div class="dcr-split-card__section"&gt;…&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 </section>
 
