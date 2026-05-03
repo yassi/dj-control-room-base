@@ -1,8 +1,24 @@
+import functools
+
 from django.conf import settings as django_settings
 from django.contrib import admin
+from django.contrib.auth.views import redirect_to_login
+from django.core.exceptions import PermissionDenied
 from django.http import HttpRequest
 from django.templatetags.static import static
+from django.urls import reverse
 from django.utils.html import format_html, mark_safe
+
+
+# Default keys merged before panel ``defaults`` (see ``get_settings``). Panels omit
+# these in ``conf.py`` and still get consistent behaviour across CSS and permission.
+PANEL_BUILTIN_DEFAULTS: dict[str, object] = {
+    "LOAD_DEFAULT_CSS": True,
+    "EXTRA_CSS": [],
+    "ALLOWED_GROUPS": [],
+    "REQUIRE_SUPERUSER": False,
+    "SCOPE_PERMISSIONS": {},
+}
 
 
 class PanelConfig:
@@ -12,6 +28,11 @@ class PanelConfig:
     Instantiate once in the panel's conf.py, then use the instance methods
     in views and elsewhere — no need to pass settings_key or defaults at
     every call site.
+
+    Builtin defaults (:data:`PANEL_BUILTIN_DEFAULTS`) are merged beneath
+    the panel ``defaults``, then hub overrides and project Django settings.
+
+    Permission checks use the same merged mapping as ``get_settings()`` on each call.
 
     Example::
 
@@ -48,8 +69,9 @@ class PanelConfig:
         defined_settings = getattr(django_settings, self.settings_key, None) or {}
 
         # combine settings and follow the order of precedence
-        # 1. defaults - settings defined in a panel's conf.py
-        # 2. override settings - settings defined in the dj-control-room package like
+        # 0. builtins — package-wide defaults including permission keys (see ``PANEL_BUILTIN_DEFAULTS``)
+        # 1. defaults — settings defined in a panel's conf.py
+        # 2. override settings — settings defined in the dj-control-room package like
         # DJ_CONTROL_ROOM_SETTINGS = {
         #     "LOAD_DEFAULT_CSS": False,
         #     "EXTRA_CSS": ["dj_control_room_base/css/overrides.css"],
@@ -59,20 +81,64 @@ class PanelConfig:
         #         }
         #     }
         # }
-        # 3. defined settings - settings defined in the consuming project's app settings
+        # 3. defined settings — settings defined in the consuming project's app settings
         # DJ_REDIS_PANEL_SETTINGS = {
         #     "LOAD_DEFAULT_CSS": False,
         #     "ALLOW_OPTION": True,
         # }
         combined_settings = {
+            **PANEL_BUILTIN_DEFAULTS,
             **self.defaults,
             **self._override_settings,
             **defined_settings,
         }
         if key is not None:
-            # get a specific key and fall back to defaults if not defined
-            return combined_settings.get(key, self.defaults.get(key, None))
+            return combined_settings.get(key)
         return combined_settings
+
+    def _resolve_permission_settings(self, scope: str | None = None) -> dict:
+        merged = self.get_settings()
+        scope_map_raw = merged["SCOPE_PERMISSIONS"]
+        scope_permissions = scope_map_raw if isinstance(scope_map_raw, dict) else {}
+        panel_level = {
+            "ALLOWED_GROUPS": merged["ALLOWED_GROUPS"],
+            "REQUIRE_SUPERUSER": merged["REQUIRE_SUPERUSER"],
+        }
+        if scope is None:
+            return panel_level
+        scope_overrides = scope_permissions.get(scope, {})
+        if not isinstance(scope_overrides, dict):
+            scope_overrides = {}
+        return {**panel_level, **scope_overrides}
+
+    def has_permission(self, request: HttpRequest, scope: str | None = None) -> bool:
+        """Return True if the request's user may access this panel or scope."""
+        if not request.user.is_staff:
+            return False
+        settings = self._resolve_permission_settings(scope)
+        if settings["REQUIRE_SUPERUSER"]:
+            return request.user.is_superuser
+        allowed_groups = settings["ALLOWED_GROUPS"]
+        allowed = allowed_groups if isinstance(allowed_groups, (list, tuple)) else ()
+        if allowed:
+            return request.user.groups.filter(name__in=allowed).exists()
+        return True
+
+    def permission_required(self, scope: str | None = None):
+        """Decorator: redirect anonymous users to admin login; 403 otherwise if unauthorised."""
+        def decorator(view_func):
+            @functools.wraps(view_func)
+            def wrapper(request, *args, **kwargs):
+                if not request.user.is_authenticated:
+                    return redirect_to_login(
+                        request.get_full_path(),
+                        login_url=reverse("admin:login"),
+                    )
+                if not self.has_permission(request, scope):
+                    raise PermissionDenied
+                return view_func(request, *args, **kwargs)
+            return wrapper
+        return decorator
 
     def get_css_context(self) -> dict:
         """Return the CSS injection context dict for use in templates."""
