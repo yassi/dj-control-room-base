@@ -112,9 +112,15 @@ class PanelConfig:
         return {**panel_level, **scope_overrides}
 
     def has_permission(self, request: HttpRequest, scope: str | None = None) -> bool:
-        """Return True if the request's user may access this panel or scope."""
+        """Return True if the request's user may access this panel or scope.
+
+        Superusers bypass ``ALLOWED_GROUPS`` and panel-level gates (Django-admin
+        style), but must still be staff and active for typical admin-backed views.
+        """
         if not request.user.is_staff:
             return False
+        if request.user.is_superuser:
+            return True
         settings = self._resolve_permission_settings(scope)
         if settings["REQUIRE_SUPERUSER"]:
             return request.user.is_superuser
