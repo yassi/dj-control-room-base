@@ -3,7 +3,7 @@ from django.shortcuts import render
 from dj_control_room_base.conf import panel_config
 
 
-@panel_config.permission_required()
+@panel_config.permission_required("design-system")
 def index(request):
     context = panel_config.get_context(request, title="DCR Design System")
     return render(request, "admin/dj_control_room_base/index.html", context)
