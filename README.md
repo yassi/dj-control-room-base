@@ -7,7 +7,7 @@
 
 # dj-control-room-base
 
-![dj-control-room-base - a core library for creating DCR panels](images/dj-control-room-base.png)
+![dj-control-room-base - a core library for creating DCR panels](https://raw.githubusercontent.com/yassi/dj-control-room-base/main/images/dj-control-room-base.png)
 
 
 
@@ -51,11 +51,11 @@ The only runtime dependency is Django. `dj-control-room` is optional and only ne
 
 **Django admin** - the placeholder model registers an app entry that redirects to the panel, with no extra migrations required:
 
-![Django admin home showing the DJ Control Room Base sidebar entry](images/admin_home.png)
+![Django admin home showing the DJ Control Room Base sidebar entry](https://raw.githubusercontent.com/yassi/dj-control-room-base/main/images/admin_home.png)
 
 **The panel UI** - the bundled design system reference view, accessible at `/admin/dj-control-room-base/`:
 
-![DJ Control Room Base design system panel view](images/dcr-base-design-system.png)
+![DJ Control Room Base design system panel view](https://raw.githubusercontent.com/yassi/dj-control-room-base/main/images/dcr-base-design-system.png)
 
 ## Requirements
 
