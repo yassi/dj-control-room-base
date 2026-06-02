@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dj-control-room-base"
-version = "0.1.1"
+version = "0.2.0"
 description = "Core framework for Django Control Room panels"
 readme = "README.md"
 license = {text = "MIT"}
