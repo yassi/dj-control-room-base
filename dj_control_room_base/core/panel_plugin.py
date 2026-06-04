@@ -32,6 +32,11 @@ class PanelPlugin:
             distribution name read from the entry point metadata.
         docs_url (str): URL to the panel's documentation.
         pypi_url (str): URL to the panel's PyPI page.
+        features (list[str]): Short one-line descriptions of what this panel
+            offers, shown on the install page below the panel description.
+            Each item should be a concise capability statement, e.g.
+            ``"Browse and search Redis keys"``.  Leave empty (the default)
+            to omit the features section entirely.
 
     Optional methods:
         get_url_name(): URL name for the panel's main view (default ``"index"``).
@@ -74,6 +79,7 @@ class PanelPlugin:
 
     docs_url: str = None
     pypi_url: str = None
+    features: list = []
 
     def get_config(self):
         """
