@@ -668,7 +668,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--dcr-color-text-muted);
+  color: #fff;
   overflow: hidden;
 }
 
@@ -681,7 +681,6 @@
 
 .dcr-page-header__icon--accent {
   background: var(--dcr-color-accent);
-  color: #fff;
 }
 
 .dcr-page-header__icon svg {
