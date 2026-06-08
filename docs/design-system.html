@@ -211,6 +211,10 @@
   font-weight: 500 !important;
 }
 
+.dcr-font-semibold {
+  font-weight: 600 !important;
+}
+
 .dcr-font-bold {
   font-weight: 700 !important;
 }
@@ -332,6 +336,10 @@
 
 .dcr-items-stretch {
   align-items: stretch !important;
+}
+
+.dcr-items-baseline {
+  align-items: baseline !important;
 }
 
 .dcr-justify-start {
@@ -671,6 +679,18 @@
   justify-content: center;
   flex-shrink: 0;
   color: #fff;
+  overflow: hidden;
+}
+
+/* Image icons fill the full wrap rather than the inner icon slot */
+.dcr-page-header__icon > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dcr-page-header__icon--accent {
+  background: var(--dcr-color-accent);
 }
 
 .dcr-page-header__icon svg {
@@ -1967,85 +1987,61 @@ a.dcr-dropdown__item--danger:active {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-/* Colour variants - sets the tinted bg and matching icon colour */
-.dcr-panel-card__icon-wrap--accent {
-  background: var(--dcr-color-accent-bg);
-  border-color: transparent;
-}
-
-.dcr-panel-card__icon-wrap--accent>.dcr-panel-card__icon {
   color: var(--dcr-color-accent);
+  overflow: hidden;
 }
 
-.dcr-panel-card__icon-wrap--success {
-  background: var(--dcr-color-success-bg);
-  border-color: transparent;
+/* Image icons fill the full wrap rather than the inner icon slot */
+.dcr-panel-card__icon-wrap > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.dcr-panel-card__icon-wrap--success>.dcr-panel-card__icon {
-  color: var(--dcr-color-success);
-}
+/* =============================================================================
+   Icon Color Modifiers  (dcr-icon-color--*)
 
-.dcr-panel-card__icon-wrap--warning {
-  background: var(--dcr-color-warning-bg);
-  border-color: transparent;
-}
+   Composable color classes for any icon container — works on
+   dcr-panel-card__icon-wrap, dcr-page-header__icon, or any element
+   that wraps an SVG using currentColor.
 
-.dcr-panel-card__icon-wrap--warning>.dcr-panel-card__icon {
-  color: var(--dcr-color-warning);
-}
+   Tinted variants (--name):        translucent bg, coloured icon.
+   Solid variants  (--name-solid):  opaque bg, white icon.
+   ============================================================================= */
 
-.dcr-panel-card__icon-wrap--danger {
-  background: var(--dcr-color-danger-bg);
-  border-color: transparent;
-}
+/* Tinted */
+.dcr-icon-color--accent  { background: var(--dcr-color-accent-bg);  color: var(--dcr-color-accent);  border-color: transparent; }
+.dcr-icon-color--success { background: var(--dcr-color-success-bg); color: var(--dcr-color-success); border-color: transparent; }
+.dcr-icon-color--warning { background: var(--dcr-color-warning-bg); color: var(--dcr-color-warning); border-color: transparent; }
+.dcr-icon-color--danger  { background: var(--dcr-color-danger-bg);  color: var(--dcr-color-danger);  border-color: transparent; }
+.dcr-icon-color--info    { background: var(--dcr-color-info-bg);    color: var(--dcr-color-info);    border-color: transparent; }
+.dcr-icon-color--muted   { background: var(--dcr-color-muted-bg);   color: var(--dcr-color-muted);   border-color: transparent; }
+.dcr-icon-color--purple  { background: var(--dcr-color-purple-bg);  color: var(--dcr-color-purple);  border-color: transparent; }
+.dcr-icon-color--indigo  { background: var(--dcr-color-indigo-bg);  color: var(--dcr-color-indigo);  border-color: transparent; }
 
-.dcr-panel-card__icon-wrap--danger>.dcr-panel-card__icon {
-  color: var(--dcr-color-danger);
-}
+/* Solid */
+.dcr-icon-color--accent-solid  { background: var(--dcr-color-accent);  color: var(--dcr-color-text-inverse); border-color: transparent; }
+.dcr-icon-color--success-solid { background: var(--dcr-color-success); color: var(--dcr-color-text-inverse); border-color: transparent; }
+.dcr-icon-color--warning-solid { background: var(--dcr-color-warning); color: var(--dcr-color-text-inverse); border-color: transparent; }
+.dcr-icon-color--danger-solid  { background: var(--dcr-color-danger);  color: var(--dcr-color-text-inverse); border-color: transparent; }
+.dcr-icon-color--info-solid    { background: var(--dcr-color-info);    color: var(--dcr-color-text-inverse); border-color: transparent; }
+.dcr-icon-color--muted-solid   { background: var(--dcr-color-muted);   color: var(--dcr-color-text-inverse); border-color: transparent; }
+.dcr-icon-color--purple-solid  { background: var(--dcr-color-purple);  color: var(--dcr-color-text-inverse); border-color: transparent; }
+.dcr-icon-color--indigo-solid  { background: var(--dcr-color-indigo);  color: var(--dcr-color-text-inverse); border-color: transparent; }
 
-.dcr-panel-card__icon-wrap--info {
-  background: var(--dcr-color-info-bg);
-  border-color: transparent;
-}
-
-.dcr-panel-card__icon-wrap--info>.dcr-panel-card__icon {
-  color: var(--dcr-color-info);
-}
-
-.dcr-panel-card__icon-wrap--muted {
-  background: var(--dcr-color-muted-bg);
-  border-color: transparent;
-}
-
-.dcr-panel-card__icon-wrap--muted>.dcr-panel-card__icon {
-  color: var(--dcr-color-muted);
-}
-
-.dcr-panel-card__icon-wrap--purple {
-  background: var(--dcr-color-purple-bg);
-  border-color: transparent;
-}
-
-.dcr-panel-card__icon-wrap--purple>.dcr-panel-card__icon {
-  color: var(--dcr-color-purple);
-}
-
-.dcr-panel-card__icon-wrap--indigo {
-  background: var(--dcr-color-indigo-bg);
-  border-color: transparent;
-}
-
-.dcr-panel-card__icon-wrap--indigo>.dcr-panel-card__icon {
-  color: var(--dcr-color-indigo);
-}
+/* Backward-compat aliases — dcr-panel-card__icon-wrap--* */
+.dcr-panel-card__icon-wrap--accent  { background: var(--dcr-color-accent-bg);  color: var(--dcr-color-accent);  border-color: transparent; }
+.dcr-panel-card__icon-wrap--success { background: var(--dcr-color-success-bg); color: var(--dcr-color-success); border-color: transparent; }
+.dcr-panel-card__icon-wrap--warning { background: var(--dcr-color-warning-bg); color: var(--dcr-color-warning); border-color: transparent; }
+.dcr-panel-card__icon-wrap--danger  { background: var(--dcr-color-danger-bg);  color: var(--dcr-color-danger);  border-color: transparent; }
+.dcr-panel-card__icon-wrap--info    { background: var(--dcr-color-info-bg);    color: var(--dcr-color-info);    border-color: transparent; }
+.dcr-panel-card__icon-wrap--muted   { background: var(--dcr-color-muted-bg);   color: var(--dcr-color-muted);   border-color: transparent; }
+.dcr-panel-card__icon-wrap--purple  { background: var(--dcr-color-purple-bg);  color: var(--dcr-color-purple);  border-color: transparent; }
+.dcr-panel-card__icon-wrap--indigo  { background: var(--dcr-color-indigo-bg);  color: var(--dcr-color-indigo);  border-color: transparent; }
 
 .dcr-panel-card__icon {
   width: 20px;
   height: 20px;
-  color: var(--dcr-color-accent);
   flex-shrink: 0;
 }
 
@@ -2762,6 +2758,122 @@ a.dcr-pagination__page:hover {
   white-space: pre;
   line-height: 1.5;
   margin-bottom: var(--dcr-space-md);
+}
+
+/* A code block with an overlaid copy button. */
+.dcr-code--copyable {
+  position: relative;
+  padding-right: 2.5rem;
+  margin: 0;
+}
+
+.dcr-code--copyable .dcr-copy-btn {
+  position: absolute;
+  right: var(--dcr-space-xs);
+}
+
+.dcr-code--copyable .dcr-copy-btn--center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dcr-code--copyable .dcr-copy-btn--top {
+  top: var(--dcr-space-xs);
+}
+
+/* --- Steps ------------------------------------------------------------------ */
+/*
+ * Numbered installation / wizard steps with done and pending states.
+ * A vertical connector line links steps; it turns accent-colored once done.
+ *
+ *   <ol class="dcr-steps">
+ *     <li class="dcr-steps__step dcr-steps__step--done">
+ *       <div class="dcr-steps__indicator">
+ *         <svg ...checkmark...></svg>
+ *       </div>
+ *       <div class="dcr-steps__body">
+ *         <h4 class="dcr-steps__title">Install the package</h4>
+ *         <div class="dcr-steps__content">...</div>
+ *       </div>
+ *     </li>
+ *     <li class="dcr-steps__step">
+ *       <div class="dcr-steps__indicator">2</div>
+ *       <div class="dcr-steps__body">...</div>
+ *     </li>
+ *   </ol>
+ */
+
+.dcr-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dcr-steps__step {
+  display: flex;
+  gap: var(--dcr-space-md);
+  position: relative;
+}
+
+/* Vertical connector line between steps */
+.dcr-steps__step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: calc(1.125rem - 1px);
+  top: calc(2.25rem + var(--dcr-space-xs));
+  bottom: 0;
+  width: 2px;
+  background: var(--dcr-color-border);
+}
+
+.dcr-steps__step--done:not(:last-child)::before {
+  background: var(--dcr-color-success);
+}
+
+.dcr-steps__indicator {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--dcr-font-size-sm);
+  font-weight: 700;
+  border: 2px solid var(--dcr-color-border);
+  background: var(--dcr-color-bg);
+  color: var(--dcr-color-text-muted);
+  position: relative;
+  z-index: 1;
+  margin-top: var(--dcr-space-xs);
+}
+
+.dcr-steps__step--done .dcr-steps__indicator,
+.dcr-steps__indicator--done {
+  background: var(--dcr-color-success);
+  border-color: var(--dcr-color-success);
+  color: #fff;
+}
+
+.dcr-steps__body {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: var(--dcr-space-lg);
+}
+
+.dcr-steps__title {
+  font-size: var(--dcr-font-size-base);
+  font-weight: 600;
+  color: var(--dcr-color-text);
+  margin: 0 0 var(--dcr-space-sm) 0;
+  padding-top: var(--dcr-space-xs);
+}
+
+.dcr-steps__content {
+  color: var(--dcr-color-text-muted);
+  font-size: var(--dcr-font-size-sm);
 }
 
 
@@ -4510,6 +4622,107 @@ body {
 
 
 &lt;code class="dcr-code dcr-code--block"&gt;{"status": "ok"}&lt;/code&gt;</code></pre>
+</section>
+
+<section class="dcr-sg-section" id="steps">
+  <div class="dcr-section-header dcr-section-header--plain">
+    <h2 class="dcr-section-header__title">Steps</h2>
+  </div>
+  <p class="dcr-sg-section__desc">Numbered installation or wizard steps with done/pending states. A vertical connector line links steps and turns green as steps complete. Use <code class="dcr-code">dcr-steps__step--done</code> on completed steps. Step content can include plain text, code snippets, or any other markup.</p>
+
+  <div class="dcr-sg-preview dcr-sg-preview--stack">
+    <div class="dcr-card" style="max-width:520px">
+    <div class="dcr-card__body">
+    <ol class="dcr-steps">
+
+      <li class="dcr-steps__step dcr-steps__step--done">
+        <div class="dcr-steps__indicator">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="dcr-steps__body">
+          <h4 class="dcr-steps__title">Install the package</h4>
+          <div class="dcr-steps__content">
+            <span class="dcr-d-block dcr-text-sm dcr-text-muted dcr-mb-sm">Add the panel to your project via pip.</span>
+            <div style="position:relative">
+              <code class="dcr-code dcr-code--block" style="margin:0;padding-right:2.5rem">pip install dj-redis-panel</code>
+              <button class="dcr-btn dcr-btn--ghost dcr-btn--sm" style="position:absolute;top:50%;right:var(--dcr-space-xs);transform:translateY(-50%)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="dcr-steps__step">
+        <div class="dcr-steps__indicator">2</div>
+        <div class="dcr-steps__body">
+          <h4 class="dcr-steps__title">Add to INSTALLED_APPS</h4>
+          <div class="dcr-steps__content">
+            <span class="dcr-d-block dcr-text-sm dcr-text-muted dcr-mb-sm">Register the app in your Django settings.</span>
+            <div style="position:relative">
+              <code class="dcr-code dcr-code--block" style="margin:0;padding-right:2.5rem">INSTALLED_APPS = [
+    # ...
+    "dj_redis_panel",
+]</code>
+              <button class="dcr-btn dcr-btn--ghost dcr-btn--sm" style="position:absolute;top:var(--dcr-space-xs);right:var(--dcr-space-xs)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="dcr-steps__step">
+        <div class="dcr-steps__indicator">3</div>
+        <div class="dcr-steps__body">
+          <h4 class="dcr-steps__title">Restart & visit the admin</h4>
+          <div class="dcr-steps__content">
+            <p>Restart your Django server. The panel appears automatically in Control Room.</p>
+          </div>
+        </div>
+      </li>
+
+    </ol>
+    </div>
+    </div>
+  </div>
+  <p class="dcr-sg-code-label">Usage</p>
+<pre class="dcr-sg-code"><code class="language-html">&lt;div class="dcr-card"&gt;
+&lt;div class="dcr-card__body"&gt;
+&lt;ol class="dcr-steps"&gt;
+
+  &lt;!-- Completed step --&gt;
+  &lt;li class="dcr-steps__step dcr-steps__step--done"&gt;
+    &lt;div class="dcr-steps__indicator"&gt;
+      &lt;svg ...checkmark...&gt;&lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class="dcr-steps__body"&gt;
+      &lt;h4 class="dcr-steps__title"&gt;Install the package&lt;/h4&gt;
+      &lt;div class="dcr-steps__content"&gt;
+        &lt;span class="dcr-d-block dcr-text-sm dcr-text-muted dcr-mb-sm"&gt;Subtitle text.&lt;/span&gt;
+        &lt;div style="position:relative"&gt;
+          &lt;code class="dcr-code dcr-code--block" style="margin:0;padding-right:2.5rem"&gt;pip install dj-redis-panel&lt;/code&gt;
+          &lt;button class="dcr-btn dcr-btn--ghost dcr-btn--sm"
+                  style="position:absolute;top:50%;right:var(--dcr-space-xs);transform:translateY(-50%)"&gt;
+            &lt;svg ...copy icon...&gt;&lt;/svg&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+
+  &lt;!-- Pending step --&gt;
+  &lt;li class="dcr-steps__step"&gt;
+    &lt;div class="dcr-steps__indicator"&gt;2&lt;/div&gt;
+    &lt;div class="dcr-steps__body"&gt;
+      &lt;h4 class="dcr-steps__title"&gt;Restart &amp;amp; visit the admin&lt;/h4&gt;
+      &lt;div class="dcr-steps__content"&gt;&lt;p&gt;...&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 </section>
 
 </div>
