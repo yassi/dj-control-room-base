@@ -3,6 +3,7 @@
 [![codecov](https://codecov.io/gh/yassi/dj-control-room-base/branch/main/graph/badge.svg)](https://codecov.io/gh/yassi/dj-control-room-base)
 [![PyPI version](https://badge.fury.io/py/dj-control-room-base.svg)](https://badge.fury.io/py/dj-control-room-base)
 [![Python versions](https://img.shields.io/pypi/pyversions/dj-control-room-base.svg)](https://pypi.org/project/dj-control-room-base/)
+[![Downloads](https://img.shields.io/pypi/dm/dj-control-room-base.svg)](https://pypi.org/project/dj-control-room-base/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 # dj-control-room-base
