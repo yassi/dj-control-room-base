@@ -104,6 +104,8 @@ Currently available:
 
 Because this is opt-in per panel rather than hub-wide, each panel you want themed needs its own `EXTRA_CSS` entry for now.
 
+![Django Control Room running with the django-unfold admin theme](https://raw.githubusercontent.com/yassi/dj-control-room-base/main/images/dcr-base-unfold.png)
+
 You can also make your own theme adapters easily by following the `unfold.css`
 example. This works very well for any tailwind.css driven admins.
 

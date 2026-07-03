@@ -63,6 +63,10 @@ The only runtime dependency is Django. `dj-control-room` is optional and only ne
 
 ![DJ Control Room Base design system panel view](https://raw.githubusercontent.com/yassi/dj-control-room-base/main/images/dcr-base-design-system.png)
 
+**django-unfold support** - panels adopt the host site's accent and neutral colors via the bundled [theme adapter](#theme-adapters):
+
+![Django Control Room running with the django-unfold admin theme](https://raw.githubusercontent.com/yassi/dj-control-room-base/main/images/dcr-base-unfold.png)
+
 ## Requirements
 
 - Python 3.9+
