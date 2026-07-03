@@ -74,13 +74,21 @@
 }
 
 /* Dark mode - override tokens only; components update automatically.
-   Covers two signals:
+   Covers three signals:
    1. OS/browser preference via media query (guarded so a manually-set
-      data-theme="light" on <html> can always win).
+      data-theme="light" on <html> can always win). Also skipped whenever
+      an Alpine-based theme switcher is present (detected via the [x-data]
+      attribute Unfold puts on <html>) - those switchers resolve OS
+      preference themselves in JS and express the result as a "dark" class
+      (or its absence), so this raw media query would otherwise re-apply
+      dark styling even after a user explicitly picks "light" while their
+      OS is set to dark.
    2. Django admin's explicit theme toggle, which sets data-theme="dark"
-      directly on <html> regardless of OS preference.             */
+      directly on <html> regardless of OS preference.
+   3. Tailwind-style theme switchers (e.g. django-unfold), which toggle a
+      plain "dark" class on <html> instead of a data-theme attribute.s   */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme="light"]):not([x-data]) {
     --dcr-color-text: #f3f4f6;
     --dcr-color-text-muted: #9ca3af;
     --dcr-color-text-inverse: #111827;
@@ -107,8 +115,11 @@
   }
 }
 
-/* Explicit dark toggle from Django admin (data-theme="dark" on <html>) */
-:root[data-theme="dark"] {
+/* Explicit dark toggle from Django admin (data-theme="dark" on <html>), or
+   from a Tailwind-style theme switcher (a plain "dark" class on <html>,
+   e.g. django-unfold) */
+:root[data-theme="dark"],
+:root.dark {
   --dcr-color-text: #f3f4f6;
   --dcr-color-text-muted: #9ca3af;
   --dcr-color-text-inverse: #111827;
@@ -677,7 +688,7 @@
 }
 
 /* Image icons fill the full wrap rather than the inner icon slot */
-.dcr-page-header__icon > img {
+.dcr-page-header__icon>img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -803,12 +814,13 @@
 /* Dark mode: default button border picks up accent to match its text.
    Ghost buttons keep their own respective variant border colours.       */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .dcr-btn:not([class*="dcr-btn--"]) {
+  :root:not([data-theme="light"]):not([x-data]) .dcr-btn:not([class*="dcr-btn--"]) {
     border-color: var(--dcr-color-accent);
   }
 }
 
-:root[data-theme="dark"] .dcr-btn:not([class*="dcr-btn--"]) {
+:root[data-theme="dark"] .dcr-btn:not([class*="dcr-btn--"]),
+:root.dark .dcr-btn:not([class*="dcr-btn--"]) {
   border-color: var(--dcr-color-accent);
 }
 
@@ -1986,7 +1998,7 @@ a.dcr-dropdown__item--danger:active {
 }
 
 /* Image icons fill the full wrap rather than the inner icon slot */
-.dcr-panel-card__icon-wrap > img {
+.dcr-panel-card__icon-wrap>img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -2004,34 +2016,151 @@ a.dcr-dropdown__item--danger:active {
    ============================================================================= */
 
 /* Tinted */
-.dcr-icon-color--accent  { background: var(--dcr-color-accent-bg);  color: var(--dcr-color-accent);  border-color: transparent; }
-.dcr-icon-color--success { background: var(--dcr-color-success-bg); color: var(--dcr-color-success); border-color: transparent; }
-.dcr-icon-color--warning { background: var(--dcr-color-warning-bg); color: var(--dcr-color-warning); border-color: transparent; }
-.dcr-icon-color--danger  { background: var(--dcr-color-danger-bg);  color: var(--dcr-color-danger);  border-color: transparent; }
-.dcr-icon-color--info    { background: var(--dcr-color-info-bg);    color: var(--dcr-color-info);    border-color: transparent; }
-.dcr-icon-color--muted   { background: var(--dcr-color-muted-bg);   color: var(--dcr-color-muted);   border-color: transparent; }
-.dcr-icon-color--purple  { background: var(--dcr-color-purple-bg);  color: var(--dcr-color-purple);  border-color: transparent; }
-.dcr-icon-color--indigo  { background: var(--dcr-color-indigo-bg);  color: var(--dcr-color-indigo);  border-color: transparent; }
+.dcr-icon-color--accent {
+  background: var(--dcr-color-accent-bg);
+  color: var(--dcr-color-accent);
+  border-color: transparent;
+}
+
+.dcr-icon-color--success {
+  background: var(--dcr-color-success-bg);
+  color: var(--dcr-color-success);
+  border-color: transparent;
+}
+
+.dcr-icon-color--warning {
+  background: var(--dcr-color-warning-bg);
+  color: var(--dcr-color-warning);
+  border-color: transparent;
+}
+
+.dcr-icon-color--danger {
+  background: var(--dcr-color-danger-bg);
+  color: var(--dcr-color-danger);
+  border-color: transparent;
+}
+
+.dcr-icon-color--info {
+  background: var(--dcr-color-info-bg);
+  color: var(--dcr-color-info);
+  border-color: transparent;
+}
+
+.dcr-icon-color--muted {
+  background: var(--dcr-color-muted-bg);
+  color: var(--dcr-color-muted);
+  border-color: transparent;
+}
+
+.dcr-icon-color--purple {
+  background: var(--dcr-color-purple-bg);
+  color: var(--dcr-color-purple);
+  border-color: transparent;
+}
+
+.dcr-icon-color--indigo {
+  background: var(--dcr-color-indigo-bg);
+  color: var(--dcr-color-indigo);
+  border-color: transparent;
+}
 
 /* Solid */
-.dcr-icon-color--accent-solid  { background: var(--dcr-color-accent);  color: var(--dcr-color-text-inverse); border-color: transparent; }
-.dcr-icon-color--success-solid { background: var(--dcr-color-success); color: var(--dcr-color-text-inverse); border-color: transparent; }
-.dcr-icon-color--warning-solid { background: var(--dcr-color-warning); color: var(--dcr-color-text-inverse); border-color: transparent; }
-.dcr-icon-color--danger-solid  { background: var(--dcr-color-danger);  color: var(--dcr-color-text-inverse); border-color: transparent; }
-.dcr-icon-color--info-solid    { background: var(--dcr-color-info);    color: var(--dcr-color-text-inverse); border-color: transparent; }
-.dcr-icon-color--muted-solid   { background: var(--dcr-color-muted);   color: var(--dcr-color-text-inverse); border-color: transparent; }
-.dcr-icon-color--purple-solid  { background: var(--dcr-color-purple);  color: var(--dcr-color-text-inverse); border-color: transparent; }
-.dcr-icon-color--indigo-solid  { background: var(--dcr-color-indigo);  color: var(--dcr-color-text-inverse); border-color: transparent; }
+.dcr-icon-color--accent-solid {
+  background: var(--dcr-color-accent);
+  color: var(--dcr-color-text-inverse);
+  border-color: transparent;
+}
+
+.dcr-icon-color--success-solid {
+  background: var(--dcr-color-success);
+  color: var(--dcr-color-text-inverse);
+  border-color: transparent;
+}
+
+.dcr-icon-color--warning-solid {
+  background: var(--dcr-color-warning);
+  color: var(--dcr-color-text-inverse);
+  border-color: transparent;
+}
+
+.dcr-icon-color--danger-solid {
+  background: var(--dcr-color-danger);
+  color: var(--dcr-color-text-inverse);
+  border-color: transparent;
+}
+
+.dcr-icon-color--info-solid {
+  background: var(--dcr-color-info);
+  color: var(--dcr-color-text-inverse);
+  border-color: transparent;
+}
+
+.dcr-icon-color--muted-solid {
+  background: var(--dcr-color-muted);
+  color: var(--dcr-color-text-inverse);
+  border-color: transparent;
+}
+
+.dcr-icon-color--purple-solid {
+  background: var(--dcr-color-purple);
+  color: var(--dcr-color-text-inverse);
+  border-color: transparent;
+}
+
+.dcr-icon-color--indigo-solid {
+  background: var(--dcr-color-indigo);
+  color: var(--dcr-color-text-inverse);
+  border-color: transparent;
+}
 
 /* Backward-compat aliases — dcr-panel-card__icon-wrap--* */
-.dcr-panel-card__icon-wrap--accent  { background: var(--dcr-color-accent-bg);  color: var(--dcr-color-accent);  border-color: transparent; }
-.dcr-panel-card__icon-wrap--success { background: var(--dcr-color-success-bg); color: var(--dcr-color-success); border-color: transparent; }
-.dcr-panel-card__icon-wrap--warning { background: var(--dcr-color-warning-bg); color: var(--dcr-color-warning); border-color: transparent; }
-.dcr-panel-card__icon-wrap--danger  { background: var(--dcr-color-danger-bg);  color: var(--dcr-color-danger);  border-color: transparent; }
-.dcr-panel-card__icon-wrap--info    { background: var(--dcr-color-info-bg);    color: var(--dcr-color-info);    border-color: transparent; }
-.dcr-panel-card__icon-wrap--muted   { background: var(--dcr-color-muted-bg);   color: var(--dcr-color-muted);   border-color: transparent; }
-.dcr-panel-card__icon-wrap--purple  { background: var(--dcr-color-purple-bg);  color: var(--dcr-color-purple);  border-color: transparent; }
-.dcr-panel-card__icon-wrap--indigo  { background: var(--dcr-color-indigo-bg);  color: var(--dcr-color-indigo);  border-color: transparent; }
+.dcr-panel-card__icon-wrap--accent {
+  background: var(--dcr-color-accent-bg);
+  color: var(--dcr-color-accent);
+  border-color: transparent;
+}
+
+.dcr-panel-card__icon-wrap--success {
+  background: var(--dcr-color-success-bg);
+  color: var(--dcr-color-success);
+  border-color: transparent;
+}
+
+.dcr-panel-card__icon-wrap--warning {
+  background: var(--dcr-color-warning-bg);
+  color: var(--dcr-color-warning);
+  border-color: transparent;
+}
+
+.dcr-panel-card__icon-wrap--danger {
+  background: var(--dcr-color-danger-bg);
+  color: var(--dcr-color-danger);
+  border-color: transparent;
+}
+
+.dcr-panel-card__icon-wrap--info {
+  background: var(--dcr-color-info-bg);
+  color: var(--dcr-color-info);
+  border-color: transparent;
+}
+
+.dcr-panel-card__icon-wrap--muted {
+  background: var(--dcr-color-muted-bg);
+  color: var(--dcr-color-muted);
+  border-color: transparent;
+}
+
+.dcr-panel-card__icon-wrap--purple {
+  background: var(--dcr-color-purple-bg);
+  color: var(--dcr-color-purple);
+  border-color: transparent;
+}
+
+.dcr-panel-card__icon-wrap--indigo {
+  background: var(--dcr-color-indigo-bg);
+  color: var(--dcr-color-indigo);
+  border-color: transparent;
+}
 
 .dcr-panel-card__icon {
   width: 20px;
@@ -3077,9 +3206,14 @@ a.dcr-pagination__page:hover {
 
 /* Dark mode: slightly brighter bars */
 @media (prefers-color-scheme: dark) {
-  .dcr-bar-chart__bar {
+  :root:not([data-theme="light"]):not([x-data]) .dcr-bar-chart__bar {
     background: rgba(102, 187, 106, 0.45);
   }
+}
+
+:root[data-theme="dark"] .dcr-bar-chart__bar,
+:root.dark .dcr-bar-chart__bar {
+  background: rgba(102, 187, 106, 0.45);
 }
 
 
