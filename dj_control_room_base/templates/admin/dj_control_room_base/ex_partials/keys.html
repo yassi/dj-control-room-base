@@ -75,54 +75,56 @@
     </form>
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>{% trans "Key" %}</th>
-        <th>{% trans "Type" %}</th>
-        <th>{% trans "DB" %}</th>
-        <th class="dcr-col--right">{% trans "Size" %}</th>
-        <th class="dcr-col--right">{% trans "TTL" %}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a href="#key_detail" class="dcr-data-table__link">user:42:profile</a></td>
-        <td><span class="dcr-badge dcr-badge--warning">hash</span></td>
-        <td>db0</td>
-        <td class="dcr-col--right">412 B</td>
-        <td class="dcr-col--right">1h</td>
-      </tr>
-      <tr>
-        <td><a href="#key_detail" class="dcr-data-table__link">session:s9k2lq</a></td>
-        <td><span class="dcr-badge dcr-badge--info">string</span></td>
-        <td>db1</td>
-        <td class="dcr-col--right">1.2 KB</td>
-        <td class="dcr-col--right">14d</td>
-      </tr>
-      <tr>
-        <td><a href="#key_detail" class="dcr-data-table__link">queue:default</a></td>
-        <td><span class="dcr-badge dcr-badge--muted">list</span></td>
-        <td>db0</td>
-        <td class="dcr-col--right">8.2 KB</td>
-        <td class="dcr-col--right">never</td>
-      </tr>
-      <tr>
-        <td><a href="#key_detail" class="dcr-data-table__link">leaderboard:weekly</a></td>
-        <td><span class="dcr-badge dcr-badge--danger">zset</span></td>
-        <td>db0</td>
-        <td class="dcr-col--right">24.2 KB</td>
-        <td class="dcr-col--right">7d</td>
-      </tr>
-      <tr>
-        <td><a href="#key_detail" class="dcr-data-table__link">online_users</a></td>
-        <td><span class="dcr-badge dcr-badge--success">set</span></td>
-        <td>db0</td>
-        <td class="dcr-col--right">612 B</td>
-        <td class="dcr-col--right">never</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="dcr-data-table__scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>{% trans "Key" %}</th>
+          <th>{% trans "Type" %}</th>
+          <th>{% trans "DB" %}</th>
+          <th class="dcr-col--right">{% trans "Size" %}</th>
+          <th class="dcr-col--right">{% trans "TTL" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="#key_detail" class="dcr-data-table__link">user:42:profile</a></td>
+          <td><span class="dcr-badge dcr-badge--warning">hash</span></td>
+          <td>db0</td>
+          <td class="dcr-col--right">412 B</td>
+          <td class="dcr-col--right">1h</td>
+        </tr>
+        <tr>
+          <td><a href="#key_detail" class="dcr-data-table__link">session:s9k2lq</a></td>
+          <td><span class="dcr-badge dcr-badge--info">string</span></td>
+          <td>db1</td>
+          <td class="dcr-col--right">1.2 KB</td>
+          <td class="dcr-col--right">14d</td>
+        </tr>
+        <tr>
+          <td><a href="#key_detail" class="dcr-data-table__link">queue:default</a></td>
+          <td><span class="dcr-badge dcr-badge--muted">list</span></td>
+          <td>db0</td>
+          <td class="dcr-col--right">8.2 KB</td>
+          <td class="dcr-col--right">never</td>
+        </tr>
+        <tr>
+          <td><a href="#key_detail" class="dcr-data-table__link">leaderboard:weekly</a></td>
+          <td><span class="dcr-badge dcr-badge--danger">zset</span></td>
+          <td>db0</td>
+          <td class="dcr-col--right">24.2 KB</td>
+          <td class="dcr-col--right">7d</td>
+        </tr>
+        <tr>
+          <td><a href="#key_detail" class="dcr-data-table__link">online_users</a></td>
+          <td><span class="dcr-badge dcr-badge--success">set</span></td>
+          <td>db0</td>
+          <td class="dcr-col--right">612 B</td>
+          <td class="dcr-col--right">never</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <div class="dcr-pagination">
     <div class="dcr-pagination__per-page">

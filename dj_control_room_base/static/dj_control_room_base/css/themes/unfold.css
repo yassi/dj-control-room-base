@@ -1,0 +1,40 @@
+/*
+   DJ CONTROL ROOM - Unfold Theme Adapter  (themes/unfold.css)
+
+
+   Not loaded automatically. Opt in per panel via EXTRA_CSS:
+
+       DJ_<PANEL>_SETTINGS = {
+           "EXTRA_CSS": ["dj_control_room_base/css/themes/unfold.css"],
+       }
+
+*/
+
+:root {
+  /* Neutrals - match Unfold's configured base/font scale */
+  --dcr-color-text: var(--color-font-default-light, #111827);
+  --dcr-color-text-muted: var(--color-font-subtle-light, #888888);
+  --dcr-color-bg-subtle: var(--color-base-50, #f9fafb);
+  --dcr-color-border: var(--color-base-200, #e5e7eb);
+  --dcr-color-muted: var(--color-font-subtle-light, #6b7280);
+  --dcr-color-muted-bg: var(--color-base-100, rgba(107, 114, 128, 0.10));
+
+  /* Accent - match Unfold's configured primary brand color */
+  --dcr-color-accent: var(--color-primary-600, #417690);
+  --dcr-color-accent-bg: var(--color-primary-100, rgba(65, 118, 144, 0.10));
+}
+
+/* Dark mode - Unfold toggles a plain "dark" class on <html>; see
+   design-system.css's :root.dark handling for the base mechanism. */
+:root.dark {
+  --dcr-color-text: var(--color-font-default-dark, #f3f4f6);
+  --dcr-color-text-muted: var(--color-font-subtle-dark, #9ca3af);
+  --dcr-color-bg: var(--color-base-900, #1a1a1a);
+  --dcr-color-bg-subtle: var(--color-base-800, #252525);
+  --dcr-color-border: var(--color-base-700, rgb(46, 46, 46));
+  --dcr-color-muted: var(--color-font-subtle-dark, #888888);
+  --dcr-color-muted-bg: var(--color-base-800, rgba(255, 255, 255, 0.08));
+
+  --dcr-color-accent: var(--color-primary-500, #79aec8);
+  --dcr-color-accent-bg: var(--color-primary-900, rgba(65, 118, 144, 0.20));
+}

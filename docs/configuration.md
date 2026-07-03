@@ -84,6 +84,31 @@ DJ_CONTROL_ROOM_BASE_SETTINGS = {
 
     If you are writing a panel template from scratch, extend `panel_base.html` (which handles these variables) or render them yourself.
 
+### Theme adapters
+
+The package ships optional token-override stylesheets under `dj_control_room_base/css/themes/` for admin skins that don't match the classic Django admin palette. These are **not loaded automatically** - add the one you need to `EXTRA_CSS` on each panel where you want it applied:
+
+```python
+DJ_MY_PANEL_SETTINGS = {
+    "EXTRA_CSS": ["dj_control_room_base/css/themes/unfold.css"],
+}
+```
+
+Currently available:
+
+| File | For |
+|---|---|
+| `themes/unfold.css` | Projects using [django-unfold](https://github.com/unfoldadmin/django-unfold) as their admin skin. |
+
+`themes/unfold.css` remaps a handful of `--dcr-*` tokens (accent color, surfaces, borders, muted text) to Unfold's own `--color-primary-*` / `--color-base-*` / `--color-font-*` CSS variables, so panels pick up the host site's configured brand color instead of DCR's classic-admin blue. It only touches tokens - never `dcr-*` component rules - and every override falls back to DCR's own default if the Unfold variable isn't present, so it's safe to load even if Unfold changes its internals in a future release. Semantic status colors (success/warning/danger/info) are left alone, since Unfold doesn't expose those as configurable brand colors.
+
+Because this is opt-in per panel rather than hub-wide, each panel you want themed needs its own `EXTRA_CSS` entry for now.
+
+![Django Control Room running with the django-unfold admin theme](https://raw.githubusercontent.com/yassi/dj-control-room-base/main/images/dcr-base-unfold.png)
+
+You can also make your own theme adapters easily by following the `unfold.css`
+example. This works very well for any tailwind.css driven admins.
+
 ---
 
 ## Permission settings

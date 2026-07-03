@@ -16,33 +16,35 @@
           </h3>
         </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>{% trans "Hostname" %}</th>
-            <th>{% trans "Pool" %}</th>
-            <th class="dcr-col--right">{% trans "Conc." %}</th>
-            <th class="dcr-col--right">{% trans "Active" %}</th>
-            <th class="dcr-col--right">{% trans "Uptime" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="dcr-pill dcr-pill--success"><span class="dcr-pill__dot"></span>celery@worker-1.prod</span></td>
-            <td>prefork</td>
-            <td class="dcr-col--right">8</td>
-            <td class="dcr-col--right">3</td>
-            <td class="dcr-col--right">12d 4h</td>
-          </tr>
-          <tr>
-            <td><span class="dcr-pill dcr-pill--danger"><span class="dcr-pill__dot"></span>celery@worker-3.prod</span></td>
-            <td>gevent</td>
-            <td class="dcr-col--right">50</td>
-            <td class="dcr-col--right">0</td>
-            <td class="dcr-col--right">-</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="dcr-data-table__scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>{% trans "Hostname" %}</th>
+              <th>{% trans "Pool" %}</th>
+              <th class="dcr-col--right">{% trans "Conc." %}</th>
+              <th class="dcr-col--right">{% trans "Active" %}</th>
+              <th class="dcr-col--right">{% trans "Uptime" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="dcr-pill dcr-pill--success"><span class="dcr-pill__dot"></span>celery@worker-1.prod</span></td>
+              <td>prefork</td>
+              <td class="dcr-col--right">8</td>
+              <td class="dcr-col--right">3</td>
+              <td class="dcr-col--right">12d 4h</td>
+            </tr>
+            <tr>
+              <td><span class="dcr-pill dcr-pill--danger"><span class="dcr-pill__dot"></span>celery@worker-3.prod</span></td>
+              <td>gevent</td>
+              <td class="dcr-col--right">50</td>
+              <td class="dcr-col--right">0</td>
+              <td class="dcr-col--right">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
@@ -55,47 +57,53 @@
       &lt;/h3&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;table&gt;…&lt;/table&gt;
+  &lt;div class="dcr-data-table__scroll"&gt;
+    &lt;table&gt;…&lt;/table&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
   <div class="dcr-sg-preview">
     <div class="dcr-data-table dcr-data-table--no-stripe" style="width:100%">
-      <table>
-        <thead>
-          <tr>
-            <th>{% trans "App" %}</th>
-            <th>{% trans "Label" %}</th>
-            <th>{% trans "Models" %}</th>
-            <th class="dcr-col--right">{% trans "Migrations" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><a href="#" class="dcr-data-table__link">django.contrib.auth</a></td>
-            <td>auth</td>
-            <td>4</td>
-            <td class="dcr-col--right"><span class="dcr-badge dcr-badge--success">up to date</span></td>
-          </tr>
-          <tr>
-            <td><a href="#" class="dcr-data-table__link">django.contrib.contenttypes</a></td>
-            <td>contenttypes</td>
-            <td>1</td>
-            <td class="dcr-col--right"><span class="dcr-badge dcr-badge--success">up to date</span></td>
-          </tr>
-          <tr>
-            <td><a href="#" class="dcr-data-table__link">myapp.billing</a></td>
-            <td>billing</td>
-            <td>6</td>
-            <td class="dcr-col--right"><span class="dcr-badge dcr-badge--warning">1 pending</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="dcr-data-table__scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>{% trans "App" %}</th>
+              <th>{% trans "Label" %}</th>
+              <th>{% trans "Models" %}</th>
+              <th class="dcr-col--right">{% trans "Migrations" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#" class="dcr-data-table__link">django.contrib.auth</a></td>
+              <td>auth</td>
+              <td>4</td>
+              <td class="dcr-col--right"><span class="dcr-badge dcr-badge--success">up to date</span></td>
+            </tr>
+            <tr>
+              <td><a href="#" class="dcr-data-table__link">django.contrib.contenttypes</a></td>
+              <td>contenttypes</td>
+              <td>1</td>
+              <td class="dcr-col--right"><span class="dcr-badge dcr-badge--success">up to date</span></td>
+            </tr>
+            <tr>
+              <td><a href="#" class="dcr-data-table__link">myapp.billing</a></td>
+              <td>billing</td>
+              <td>6</td>
+              <td class="dcr-col--right"><span class="dcr-badge dcr-badge--warning">1 pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
 <pre class="dcr-sg-code"><code class="language-html">&lt;!-- No-stripe modifier removes alternating row color --&gt;
 &lt;div class="dcr-data-table dcr-data-table--no-stripe"&gt;
-  &lt;table&gt;…&lt;/table&gt;
+  &lt;div class="dcr-data-table__scroll"&gt;
+    &lt;table&gt;…&lt;/table&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
   <div class="dcr-sg-preview dcr-sg-preview--stack">
@@ -147,40 +155,42 @@
         </form>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>{% trans "Key" %}</th>
-            <th>{% trans "Type" %}</th>
-            <th>{% trans "DB" %}</th>
-            <th class="dcr-col--right">{% trans "Size" %}</th>
-            <th class="dcr-col--right">{% trans "TTL" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><a href="#" class="dcr-data-table__link">user:42:profile</a></td>
-            <td><span class="dcr-badge dcr-badge--warning">hash</span></td>
-            <td>db0</td>
-            <td class="dcr-col--right">412 B</td>
-            <td class="dcr-col--right">1h</td>
-          </tr>
-          <tr>
-            <td><a href="#" class="dcr-data-table__link">session:s9k2lq</a></td>
-            <td><span class="dcr-badge dcr-badge--info">string</span></td>
-            <td>db1</td>
-            <td class="dcr-col--right">1.2 KB</td>
-            <td class="dcr-col--right">14d</td>
-          </tr>
-          <tr>
-            <td><a href="#" class="dcr-data-table__link">queue:default</a></td>
-            <td><span class="dcr-badge dcr-badge--muted">list</span></td>
-            <td>db0</td>
-            <td class="dcr-col--right">8.2 KB</td>
-            <td class="dcr-col--right">never</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="dcr-data-table__scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>{% trans "Key" %}</th>
+              <th>{% trans "Type" %}</th>
+              <th>{% trans "DB" %}</th>
+              <th class="dcr-col--right">{% trans "Size" %}</th>
+              <th class="dcr-col--right">{% trans "TTL" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#" class="dcr-data-table__link">user:42:profile</a></td>
+              <td><span class="dcr-badge dcr-badge--warning">hash</span></td>
+              <td>db0</td>
+              <td class="dcr-col--right">412 B</td>
+              <td class="dcr-col--right">1h</td>
+            </tr>
+            <tr>
+              <td><a href="#" class="dcr-data-table__link">session:s9k2lq</a></td>
+              <td><span class="dcr-badge dcr-badge--info">string</span></td>
+              <td>db1</td>
+              <td class="dcr-col--right">1.2 KB</td>
+              <td class="dcr-col--right">14d</td>
+            </tr>
+            <tr>
+              <td><a href="#" class="dcr-data-table__link">queue:default</a></td>
+              <td><span class="dcr-badge dcr-badge--muted">list</span></td>
+              <td>db0</td>
+              <td class="dcr-col--right">8.2 KB</td>
+              <td class="dcr-col--right">never</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="dcr-pagination">
         <div class="dcr-pagination__per-page">
@@ -223,8 +233,10 @@
     &lt;form class="dcr-form"&gt;…&lt;/form&gt;
   &lt;/div&gt;
 
-  &lt;!-- Zone 3: table body --&gt;
-  &lt;table&gt;…&lt;/table&gt;
+  &lt;!-- Zone 3: table body, wrapped so it scrolls instead of clipping --&gt;
+  &lt;div class="dcr-data-table__scroll"&gt;
+    &lt;table&gt;…&lt;/table&gt;
+  &lt;/div&gt;
 
   &lt;!-- Zone 4: pagination (optional) --&gt;
   &lt;div class="dcr-pagination"&gt;…&lt;/div&gt;
@@ -239,6 +251,7 @@
   <p class="dcr-sg-section__desc">{% trans "Add a " %}<code class="dcr-code">dcr-col--expand</code>{% trans " column with a " %}<code class="dcr-code">dcr-data-table__expand-btn</code>{% trans " toggle. Each row pairs with a hidden " %}<code class="dcr-code">dcr-data-table__expand-row</code>{% trans " sibling. Toggle " %}<code class="dcr-code">is-open</code>{% trans " and " %}<code class="dcr-code">aria-expanded</code>{% trans " via JS." %}</p>
   <div class="dcr-sg-preview dcr-sg-preview--stack">
     <div class="dcr-data-table dcr-data-table--no-stripe" style="width:100%">
+      <div class="dcr-data-table__scroll">
       <table>
         <thead>
           <tr>
@@ -326,10 +339,12 @@ def reindex_post(sender, instance, created, **kwargs):
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
   <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
 <pre class="dcr-sg-code"><code class="language-html">&lt;div class="dcr-data-table dcr-data-table--no-stripe"&gt;
+  &lt;div class="dcr-data-table__scroll"&gt;
   &lt;table&gt;
     &lt;thead&gt;
       &lt;tr&gt;
@@ -359,6 +374,7 @@ def reindex_post(sender, instance, created, **kwargs):
       &lt;/tr&gt;
     &lt;/tbody&gt;
   &lt;/table&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;script&gt;
@@ -397,13 +413,15 @@ document.querySelectorAll('.dcr-data-table__expand-btn').forEach(function (btn) 
         <h3 class="dcr-data-table__title">{% trans "Results" %}</h3>
         <span class="dcr-badge dcr-badge--muted">847 keys</span>
       </div>
-      <table>
-        <thead><tr><th>{% trans "Key" %}</th><th>{% trans "TTL" %}</th><th>{% trans "Size" %}</th></tr></thead>
-        <tbody>
-          <tr><td><code class="dcr-code">views.homepage</code></td><td>300s</td><td>1.2 KB</td></tr>
-          <tr><td><code class="dcr-code">views.product_42</code></td><td>600s</td><td>4.7 KB</td></tr>
-        </tbody>
-      </table>
+      <div class="dcr-data-table__scroll">
+        <table>
+          <thead><tr><th>{% trans "Key" %}</th><th>{% trans "TTL" %}</th><th>{% trans "Size" %}</th></tr></thead>
+          <tbody>
+            <tr><td><code class="dcr-code">views.homepage</code></td><td>300s</td><td>1.2 KB</td></tr>
+            <tr><td><code class="dcr-code">views.product_42</code></td><td>600s</td><td>4.7 KB</td></tr>
+          </tbody>
+        </table>
+      </div>
       <div class="dcr-pagination">
         <div class="dcr-pagination__per-page">
           <span class="dcr-pagination__summary">{% trans "Showing" %} <strong>1–20</strong> {% trans "of" %} <strong>847</strong></span>
@@ -445,13 +463,15 @@ document.querySelectorAll('.dcr-data-table__expand-btn').forEach(function (btn) 
           <h3 class="dcr-data-table__title">{% trans "Keys" %}</h3>
         </div>
       </div>
-      <table>
-        <thead><tr><th>{% trans "Key" %}</th><th>{% trans "Type" %}</th></tr></thead>
-        <tbody>
-          <tr><td><a href="#" class="dcr-data-table__link">session:user_4821</a></td><td><span class="dcr-badge dcr-badge--info">string</span></td></tr>
-          <tr><td><a href="#" class="dcr-data-table__link">session:cart_5518</a></td><td><span class="dcr-badge dcr-badge--warning">hash</span></td></tr>
-        </tbody>
-      </table>
+      <div class="dcr-data-table__scroll">
+        <table>
+          <thead><tr><th>{% trans "Key" %}</th><th>{% trans "Type" %}</th></tr></thead>
+          <tbody>
+            <tr><td><a href="#" class="dcr-data-table__link">session:user_4821</a></td><td><span class="dcr-badge dcr-badge--info">string</span></td></tr>
+            <tr><td><a href="#" class="dcr-data-table__link">session:cart_5518</a></td><td><span class="dcr-badge dcr-badge--warning">hash</span></td></tr>
+          </tbody>
+        </table>
+      </div>
       <div class="dcr-pagination">
         <span class="dcr-pagination__summary">{% trans "Cursor scan - page 2" %}</span>
         <div class="dcr-pagination__controls">
@@ -483,29 +503,31 @@ document.querySelectorAll('.dcr-data-table__expand-btn').forEach(function (btn) 
       <div class="dcr-data-table__header">
         <h3 class="dcr-data-table__title">{% trans "Error Groups" %}</h3>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>{% trans "Title" %}</th>
-            <th>{% trans "Occurrences" %}</th>
-            <th>{% trans "Last seen" %}</th>
-            <th>{% trans "Status" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="4">
-              <div class="dcr-empty">
-                <div class="dcr-empty__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      <div class="dcr-data-table__scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>{% trans "Title" %}</th>
+              <th>{% trans "Occurrences" %}</th>
+              <th>{% trans "Last seen" %}</th>
+              <th>{% trans "Status" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="4">
+                <div class="dcr-empty">
+                  <div class="dcr-empty__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                  </div>
+                  <p class="dcr-empty__title">{% trans "No errors recorded" %}</p>
+                  <p class="dcr-empty__body">{% trans "Errors captured from your views, middleware, and Celery tasks will appear here." %}</p>
                 </div>
-                <p class="dcr-empty__title">{% trans "No errors recorded" %}</p>
-                <p class="dcr-empty__body">{% trans "Errors captured from your views, middleware, and Celery tasks will appear here." %}</p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
@@ -513,6 +535,7 @@ document.querySelectorAll('.dcr-data-table__expand-btn').forEach(function (btn) 
   &lt;div class="dcr-data-table__header"&gt;
     &lt;h3 class="dcr-data-table__title"&gt;Error Groups&lt;/h3&gt;
   &lt;/div&gt;
+  &lt;div class="dcr-data-table__scroll"&gt;
   &lt;table&gt;
     &lt;thead&gt;
       &lt;tr&gt;
@@ -534,6 +557,7 @@ document.querySelectorAll('.dcr-data-table__expand-btn').forEach(function (btn) 
       &lt;/tr&gt;
     &lt;/tbody&gt;
   &lt;/table&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
 </section>
@@ -548,33 +572,35 @@ document.querySelectorAll('.dcr-data-table__expand-btn').forEach(function (btn) 
       <div class="dcr-data-table__header">
         <h3 class="dcr-data-table__title">{% trans "Backend Capabilities" %}</h3>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>{% trans "Backend" %}</th>
-            <th>{% trans "Key listing" %}</th>
-            <th>{% trans "TTL support" %}</th>
-            <th>{% trans "Flush" %}</th>
-            <th>{% trans "Inline edit" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code class="dcr-code">LocMemCache</code></td>
-            <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
-            <td><span class="dcr-ability-indicator dcr-ability-indicator--no"  aria-label="{% trans 'Not supported' %}">–</span></td>
-            <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
-            <td><span class="dcr-ability-indicator dcr-ability-indicator--no"  aria-label="{% trans 'Not supported' %}">–</span></td>
-          </tr>
-          <tr>
-            <td><code class="dcr-code">RedisCache</code></td>
-            <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
-            <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
-            <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
-            <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="dcr-data-table__scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>{% trans "Backend" %}</th>
+              <th>{% trans "Key listing" %}</th>
+              <th>{% trans "TTL support" %}</th>
+              <th>{% trans "Flush" %}</th>
+              <th>{% trans "Inline edit" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="dcr-code">LocMemCache</code></td>
+              <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
+              <td><span class="dcr-ability-indicator dcr-ability-indicator--no"  aria-label="{% trans 'Not supported' %}">–</span></td>
+              <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
+              <td><span class="dcr-ability-indicator dcr-ability-indicator--no"  aria-label="{% trans 'Not supported' %}">–</span></td>
+            </tr>
+            <tr>
+              <td><code class="dcr-code">RedisCache</code></td>
+              <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
+              <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
+              <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
+              <td><span class="dcr-ability-indicator dcr-ability-indicator--yes" aria-label="{% trans 'Supported' %}">✓</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <p class="dcr-sg-code-label">{% trans "Usage" %}</p>
@@ -582,6 +608,7 @@ document.querySelectorAll('.dcr-data-table__expand-btn').forEach(function (btn) 
   &lt;div class="dcr-data-table__header"&gt;
     &lt;h3 class="dcr-data-table__title"&gt;Backend Capabilities&lt;/h3&gt;
   &lt;/div&gt;
+  &lt;div class="dcr-data-table__scroll"&gt;
   &lt;table&gt;
     &lt;thead&gt;
       &lt;tr&gt;&lt;th&gt;Backend&lt;/th&gt;&lt;th&gt;Key listing&lt;/th&gt;&lt;th&gt;TTL support&lt;/th&gt;&lt;/tr&gt;
@@ -594,5 +621,6 @@ document.querySelectorAll('.dcr-data-table__expand-btn').forEach(function (btn) 
       &lt;/tr&gt;
     &lt;/tbody&gt;
   &lt;/table&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 </section>

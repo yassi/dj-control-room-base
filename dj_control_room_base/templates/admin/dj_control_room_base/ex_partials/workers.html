@@ -99,48 +99,50 @@
   <div class="dcr-data-table__header">
     <h3 class="dcr-data-table__title">{% trans "Recent Tasks" %}</h3>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>{% trans "Task" %}</th>
-        <th>{% trans "Status" %}</th>
-        <th>{% trans "Duration" %}</th>
-        <th style="text-align:right">{% trans "When" %}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code class="dcr-code">send_welcome_email</code></td>
-        <td><span class="dcr-status-text dcr-status-text--success">✓ {% trans "Success" %}</span></td>
-        <td><code class="dcr-code">0.4s</code></td>
-        <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "2m ago" %}</td>
-      </tr>
-      <tr>
-        <td><code class="dcr-code">process_payment</code></td>
-        <td><span class="dcr-status-text dcr-status-text--success">✓ {% trans "Success" %}</span></td>
-        <td><code class="dcr-code">1.2s</code></td>
-        <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "4m ago" %}</td>
-      </tr>
-      <tr>
-        <td><code class="dcr-code">generate_report</code></td>
-        <td><span class="dcr-status-text dcr-status-text--warning">◷ {% trans "Running" %}</span></td>
-        <td><code class="dcr-code">-</code></td>
-        <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "now" %}</td>
-      </tr>
-      <tr>
-        <td><code class="dcr-code">sync_inventory</code></td>
-        <td><span class="dcr-status-text dcr-status-text--danger">✕ {% trans "Failed" %}</span></td>
-        <td><code class="dcr-code">8.1s</code></td>
-        <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "6m ago" %}</td>
-      </tr>
-      <tr>
-        <td><code class="dcr-code">resize_image</code></td>
-        <td><span class="dcr-status-text dcr-status-text--muted">↺ {% trans "Retry" %}</span></td>
-        <td><code class="dcr-code">-</code></td>
-        <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "7m ago" %}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="dcr-data-table__scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>{% trans "Task" %}</th>
+          <th>{% trans "Status" %}</th>
+          <th>{% trans "Duration" %}</th>
+          <th style="text-align:right">{% trans "When" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="dcr-code">send_welcome_email</code></td>
+          <td><span class="dcr-status-text dcr-status-text--success">✓ {% trans "Success" %}</span></td>
+          <td><code class="dcr-code">0.4s</code></td>
+          <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "2m ago" %}</td>
+        </tr>
+        <tr>
+          <td><code class="dcr-code">process_payment</code></td>
+          <td><span class="dcr-status-text dcr-status-text--success">✓ {% trans "Success" %}</span></td>
+          <td><code class="dcr-code">1.2s</code></td>
+          <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "4m ago" %}</td>
+        </tr>
+        <tr>
+          <td><code class="dcr-code">generate_report</code></td>
+          <td><span class="dcr-status-text dcr-status-text--warning">◷ {% trans "Running" %}</span></td>
+          <td><code class="dcr-code">-</code></td>
+          <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "now" %}</td>
+        </tr>
+        <tr>
+          <td><code class="dcr-code">sync_inventory</code></td>
+          <td><span class="dcr-status-text dcr-status-text--danger">✕ {% trans "Failed" %}</span></td>
+          <td><code class="dcr-code">8.1s</code></td>
+          <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "6m ago" %}</td>
+        </tr>
+        <tr>
+          <td><code class="dcr-code">resize_image</code></td>
+          <td><span class="dcr-status-text dcr-status-text--muted">↺ {% trans "Retry" %}</span></td>
+          <td><code class="dcr-code">-</code></td>
+          <td style="text-align:right;color:var(--dcr-color-text-muted)">{% trans "7m ago" %}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 {# Failed task callout #}
@@ -160,38 +162,40 @@
       </h3>
     </div>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>{% trans "Hostname" %}</th>
-        <th>{% trans "Pool" %}</th>
-        <th class="dcr-col--right">{% trans "Conc." %}</th>
-        <th class="dcr-col--right">{% trans "Active" %}</th>
-        <th class="dcr-col--right">{% trans "Uptime" %}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="dcr-pill dcr-pill--success"><span class="dcr-pill__dot"></span>celery@worker-1.prod</span></td>
-        <td>prefork</td>
-        <td class="dcr-col--right">8</td>
-        <td class="dcr-col--right">3</td>
-        <td class="dcr-col--right">12d 4h</td>
-      </tr>
-      <tr>
-        <td><span class="dcr-pill dcr-pill--success"><span class="dcr-pill__dot"></span>celery@worker-2.prod</span></td>
-        <td>prefork</td>
-        <td class="dcr-col--right">8</td>
-        <td class="dcr-col--right">1</td>
-        <td class="dcr-col--right">12d 4h</td>
-      </tr>
-      <tr>
-        <td><span class="dcr-pill dcr-pill--danger"><span class="dcr-pill__dot"></span>celery@worker-3.prod</span></td>
-        <td>gevent</td>
-        <td class="dcr-col--right">50</td>
-        <td class="dcr-col--right">0</td>
-        <td class="dcr-col--right">-</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="dcr-data-table__scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>{% trans "Hostname" %}</th>
+          <th>{% trans "Pool" %}</th>
+          <th class="dcr-col--right">{% trans "Conc." %}</th>
+          <th class="dcr-col--right">{% trans "Active" %}</th>
+          <th class="dcr-col--right">{% trans "Uptime" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="dcr-pill dcr-pill--success"><span class="dcr-pill__dot"></span>celery@worker-1.prod</span></td>
+          <td>prefork</td>
+          <td class="dcr-col--right">8</td>
+          <td class="dcr-col--right">3</td>
+          <td class="dcr-col--right">12d 4h</td>
+        </tr>
+        <tr>
+          <td><span class="dcr-pill dcr-pill--success"><span class="dcr-pill__dot"></span>celery@worker-2.prod</span></td>
+          <td>prefork</td>
+          <td class="dcr-col--right">8</td>
+          <td class="dcr-col--right">1</td>
+          <td class="dcr-col--right">12d 4h</td>
+        </tr>
+        <tr>
+          <td><span class="dcr-pill dcr-pill--danger"><span class="dcr-pill__dot"></span>celery@worker-3.prod</span></td>
+          <td>gevent</td>
+          <td class="dcr-col--right">50</td>
+          <td class="dcr-col--right">0</td>
+          <td class="dcr-col--right">-</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
