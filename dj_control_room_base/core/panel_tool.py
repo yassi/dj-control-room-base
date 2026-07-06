@@ -38,9 +38,9 @@ class ToolRegistry:
             PanelToolContext, PanelToolResult, ToolRegistry,
         )
 
-        tools = ToolRegistry()
+        registry = ToolRegistry()
 
-        @tools.register(
+        @registry.register(
             name="get_item",
             scope="read",
             description="Fetch a single item by key.",
@@ -55,9 +55,9 @@ class ToolRegistry:
 
     Then wire it into ``conf.py``::
 
-        from .tools import tools
+        from .tools import registry as tool_registry
 
-        panel_config = PanelConfig(..., tools=tools.tools)
+        panel_config = PanelConfig(..., tools=tool_registry.tools)
 
     The decorator only records metadata as a side effect — it returns the
     wrapped function unchanged, so handlers stay plain, directly callable
