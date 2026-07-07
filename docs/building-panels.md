@@ -205,9 +205,9 @@ Tools reuse the same scope-based permission system as views — no separate perm
 
 ### Tool primitives
 
-All three are importable from `dj_control_room_base.core.panel_tool`:
+All four are importable from `dj_control_room_base.core.panel_tool`:
 
-**`PanelTool`** — the tool definition, declared once at configuration time:
+**`PanelTool`** — the tool definition. You'll rarely construct this directly (see `ToolRegistry` below), but it's what ends up on `PanelConfig.tools`:
 
 | Field | Type | Description |
 |---|---|---|
@@ -233,15 +233,37 @@ All three are importable from `dj_control_room_base.core.panel_tool`:
 | `message` | `str` | A short human-readable summary of the outcome. |
 | `data` | `dict` | The structured result payload. Defaults to `{}`. |
 
+**`ToolRegistry`** — collects `PanelTool`s via a `@registry.register(...)` decorator, so each tool's metadata lives directly above the handler it describes instead of in a separate list you have to keep in sync. This is the recommended way to define tools (see below).
+
 ### Defining tools
 
 Keep handlers in a dedicated `tools.py` module. Use local imports inside handlers for anything that touches Django models — this keeps the module safe to import at any point in the Django startup sequence.
 
+Instantiate one `ToolRegistry` per `tools.py` module and decorate each handler with `@registry.register(...)`:
+
 ```python
 # dj_my_panel/tools.py
-from dj_control_room_base.core.panel_tool import PanelToolContext, PanelToolResult
+from dj_control_room_base.core.panel_tool import (
+    PanelToolContext,
+    PanelToolResult,
+    ToolRegistry,
+)
+
+registry = ToolRegistry()
 
 
+@registry.register(
+    name="get_item",
+    scope="read",
+    description="Fetch a single item by key.",
+    input_schema={
+        "type": "object",
+        "properties": {
+            "key": {"type": "string", "description": "The item key to look up."},
+        },
+        "required": ["key"],
+    },
+)
 def handle_get_item(ctx: PanelToolContext) -> PanelToolResult:
     from .models import Item  # local import — safe at any startup stage
 
@@ -257,6 +279,12 @@ def handle_get_item(ctx: PanelToolContext) -> PanelToolResult:
         return PanelToolResult(success=False, message=f"Item '{key}' not found.")
 
 
+@registry.register(
+    name="list_items",
+    scope="read",
+    description="List all items.",
+    input_schema={"type": "object", "properties": {}},
+)
 def handle_list_items(ctx: PanelToolContext) -> PanelToolResult:
     from .models import Item
 
@@ -268,47 +296,49 @@ def handle_list_items(ctx: PanelToolContext) -> PanelToolResult:
     )
 ```
 
+The decorator only records metadata as a side effect — it returns the handler unchanged, so `handle_get_item` and `handle_list_items` remain plain, directly callable functions (e.g. in tests, just call `handle_get_item(ctx)`).
+
 ### Registering tools on `PanelConfig`
 
-Pass `tools=[...]` when instantiating `PanelConfig` in `conf.py`. Tools are not imported at module level — `conf.py` is only loaded when `get_config()` is called at request time.
+Pass `tools=tool_registry.tools` when instantiating `PanelConfig` in `conf.py`.
 
 ```python
 # dj_my_panel/conf.py
 from dj_control_room_base.core import PanelConfig
-from dj_control_room_base.core.panel_tool import PanelTool
-from dj_my_panel.tools import handle_get_item, handle_list_items
+from dj_my_panel.tools import registry as tool_registry
 
 panel_config = PanelConfig(
     settings_key="DJ_MY_PANEL_SETTINGS",
     defaults={"LOAD_DEFAULT_CSS": True},
-    tools=[
-        PanelTool(
-            name="get_item",
-            scope="read",
-            description="Fetch a single item by key.",
-            input_schema={
-                "type": "object",
-                "properties": {
-                    "key": {"type": "string", "description": "The item key to look up."},
-                },
-                "required": ["key"],
-            },
-            handler=handle_get_item,
-        ),
-        PanelTool(
-            name="list_items",
-            scope="read",
-            description="List all items.",
-            input_schema={"type": "object", "properties": {}},
-            handler=handle_list_items,
-        ),
-    ],
+    tools=tool_registry.tools,
 )
 ```
 
 The `scope` value (`"read"` above) can be configured by project owners via `SCOPE_PERMISSIONS` in `DJ_MY_PANEL_SETTINGS`, exactly like view scopes.
 
 Panel authors do not need to write any URL configuration for tools as this will be handled by the hub package `dj-control-room` if installed.
+
+#### Building the list manually
+
+`ToolRegistry` is a convenience, not a requirement — `PanelConfig(tools=...)` just needs a `list[PanelTool]`. If you'd rather construct `PanelTool` instances directly (e.g. building the list programmatically from some other source), that still works:
+
+```python
+from dj_control_room_base.core.panel_tool import PanelTool
+from dj_my_panel.tools import handle_get_item
+
+panel_config = PanelConfig(
+    settings_key="DJ_MY_PANEL_SETTINGS",
+    tools=[
+        PanelTool(
+            name="get_item",
+            scope="read",
+            description="Fetch a single item by key.",
+            input_schema={"type": "object", "properties": {"key": {"type": "string"}}},
+            handler=handle_get_item,
+        ),
+    ],
+)
+```
 
 ---
 
