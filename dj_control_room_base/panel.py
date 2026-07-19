@@ -14,7 +14,7 @@ class DJControlRoomBasePanel(PanelPlugin):
     icon = "database"
 
     app_name = "dj_control_room_base"
-    docs_url = "https://github.com/yassi/dj-control-room-base"
+    docs_url = "https://github.com/django-control-room/dj-control-room-base"
     pypi_url = "https://pypi.org/project/dj-control-room-base/"
 
     def get_config(self):

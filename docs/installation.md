@@ -13,7 +13,7 @@
 pip install dj-control-room-base
 ```
 
-To also install the [Control Room hub](https://github.com/yassi/dj-control-room) (centralized dashboard for all panels):
+To also install the [Control Room hub](https://github.com/django-control-room/dj-control-room) (centralized dashboard for all panels):
 
 ```bash
 pip install dj-control-room-base dj-control-room

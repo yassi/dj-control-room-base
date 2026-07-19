@@ -15,7 +15,7 @@ Setting up the project for local development and contributing.
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/yassi/dj-control-room-base.git
+git clone https://github.com/django-control-room/dj-control-room-base.git
 cd dj-control-room-base
 ```
 
@@ -194,7 +194,7 @@ The command renders all seven `sg_partials/*.html` templates via Django's templa
 
 Tests run on GitHub Actions across the full matrix of supported Python and Django versions. See `.github/workflows/test.yml` for the exact matrix.
 
-Coverage is uploaded to [Codecov](https://codecov.io/gh/yassi/dj-control-room-base) on every push.
+Coverage is uploaded to [Codecov](https://codecov.io/gh/django-control-room/dj-control-room-base) on every push.
 
 ---
 

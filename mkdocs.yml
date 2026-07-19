@@ -1,10 +1,10 @@
 site_name: DJ control room base
 site_description: Core framework for Django Control Room panels
 site_author: Yasser Toruno
-site_url: https://yassi.github.io/dj-control-room-base/
+site_url: https://django-control-room.github.io/dj-control-room-base/
 
-repo_name: yassi/dj-control-room-base
-repo_url: https://github.com/yassi/dj-control-room-base
+repo_name: django-control-room/dj-control-room-base
+repo_url: https://github.com/django-control-room/dj-control-room-base
 
 theme:
   name: material

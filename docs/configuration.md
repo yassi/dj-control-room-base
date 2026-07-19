@@ -99,15 +99,21 @@ Currently available:
 | File | For |
 |---|---|
 | `themes/unfold.css` | Projects using [django-unfold](https://github.com/unfoldadmin/django-unfold) as their admin skin. |
+| `themes/jazzmin.css` | Projects using [django-jazzmin](https://github.com/farridav/django-jazzmin) as their admin skin. |
 
 `themes/unfold.css` remaps a handful of `--dcr-*` tokens (accent color, surfaces, borders, muted text) to Unfold's own `--color-primary-*` / `--color-base-*` / `--color-font-*` CSS variables, so panels pick up the host site's configured brand color instead of DCR's classic-admin blue. It only touches tokens - never `dcr-*` component rules - and every override falls back to DCR's own default if the Unfold variable isn't present, so it's safe to load even if Unfold changes its internals in a future release. Semantic status colors (success/warning/danger/info) are left alone, since Unfold doesn't expose those as configurable brand colors.
 
+`themes/jazzmin.css` follows the same approach for Jazzmin's Bootstrap 5 foundation, remapping the same set of tokens to `--bs-body-color`, `--bs-border-color`, `--bs-secondary-color`, `--bs-tertiary-bg`, `--bs-primary`, and `--bs-primary-bg-subtle` - so panels track whatever Bootswatch theme is configured via `JAZZMIN_UI_TWEAKS["theme"]` instead of hardcoding one palette. Same fallback safety and same scope (tokens only, no `dcr-*` component rules, semantic status colors untouched).
+
+Both adapters rely on `design-system.css` already recognizing the host skin's dark-mode signal so the *default* DCR palette (not just the adapter's own overrides) switches correctly: Unfold toggles a plain `dark` class on `<html>`, while Jazzmin (via Bootstrap 5) sets `data-bs-theme="dark"` on `<html>`. Both are handled automatically - no extra configuration needed beyond loading the adapter's stylesheet.
+
 Because this is opt-in per panel rather than hub-wide, each panel you want themed needs its own `EXTRA_CSS` entry for now.
 
-![Django Control Room running with the django-unfold admin theme](https://raw.githubusercontent.com/yassi/dj-control-room-base/main/images/dcr-base-unfold.png)
+![Django Control Room running with the django-unfold admin theme](https://raw.githubusercontent.com/django-control-room/dj-control-room-base/main/images/dcr-base-unfold.png)
 
-You can also make your own theme adapters easily by following the `unfold.css`
-example. This works very well for any tailwind.css driven admins.
+You can also make your own theme adapters easily by following the `unfold.css` or
+`jazzmin.css` examples. This works very well for any Tailwind CSS or Bootstrap
+driven admin that exposes its palette as CSS custom properties.
 
 ---
 
