@@ -3352,8 +3352,8 @@ a.dcr-pagination__page:hover {
   border: 1px solid var(--dcr-color-border) !important;
   border-radius: var(--dcr-radius-lg) !important;
   padding: 10px var(--dcr-space-md) !important;
-  background: var(--dcr-color-bg);
-  color: var(--dcr-color-text);
+  background: var(--dcr-color-bg) !important;
+  color: var(--dcr-color-text) !important;
   font-size: var(--dcr-font-size-base);
   outline: none;
   line-height: 1.4;
@@ -3365,7 +3365,7 @@ a.dcr-pagination__page:hover {
 }
 
 .dcr-input:focus {
-  border-color: var(--dcr-color-accent);
+  border-color: var(--dcr-color-accent) !important;
 }
 
 /* Standalone select */
@@ -3440,10 +3440,11 @@ a.dcr-pagination__page:hover {
   min-height: 36px;
   border: 1px solid var(--dcr-color-border) !important;
   border-radius: var(--dcr-radius-xl) !important;
-  /* !important beats Django admin's input[type="text"] padding override */
+  /* !important beats Django admin's input[type="text"] rule, which out-
+     specifies a lone class selector on padding, background, and color alike */
   padding: 10px var(--dcr-space-md) 10px 40px !important;
-  background: var(--dcr-color-bg);
-  color: var(--dcr-color-text);
+  background: var(--dcr-color-bg) !important;
+  color: var(--dcr-color-text) !important;
   font-size: var(--dcr-font-size-base);
   outline: none;
   line-height: 1.4;
@@ -3451,11 +3452,11 @@ a.dcr-pagination__page:hover {
 }
 
 .dcr-input-group__input::placeholder {
-  color: var(--dcr-color-text-muted);
+  color: var(--dcr-color-text-muted) !important;
 }
 
 .dcr-input-group__input:focus {
-  border-color: var(--dcr-color-accent);
+  border-color: var(--dcr-color-accent) !important;
 }
 
 /* Buttons placed directly in a --stretch row fill the full height */
